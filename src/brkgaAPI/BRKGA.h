@@ -84,6 +84,8 @@
 template <class Decoder, class RNG>
 class BRKGA {
    public:
+   std::vector<std::pair<unsigned, double>> convergenceInfo;
+
     /*
      * Default constructor
      * Required hyperparameters:
@@ -150,6 +152,12 @@ class BRKGA {
     double getRhoe() const;
     unsigned getK() const;
     unsigned getMAX_THREADS() const;
+
+    /**
+     * Registers the current best fitness and generation number in the convergence information.
+     * @param currentGeneration The current generation number.
+     */
+    void registerConvergence(unsigned int currentGeneration);
 
    private:
     // I don't see any reason to pimpl the internal methods and data, so here they are:
@@ -234,6 +242,14 @@ const Population& BRKGA<Decoder, RNG>::getPopulation(unsigned k) const {
     }
 #endif
     return (*current[k]);
+}
+
+template <class Decoder, class RNG>
+void BRKGA<Decoder, RNG>::registerConvergence(unsigned int currentGeneration) {
+    double currentBestFitness = getBestFitness();
+    if (this->convergenceInfo.empty() || currentBestFitness < this->convergenceInfo.back().second) {
+        this->convergenceInfo.emplace_back(currentGeneration, currentBestFitness);
+    }
 }
 
 template <class Decoder, class RNG>

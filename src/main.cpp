@@ -105,7 +105,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Running for " << MAX_GENS << " generations..." << std::endl;
     do {
         algorithm.evolve();  // evolve the population for one generation
-
+        algorithm.registerConvergence(generation);
         if ((++generation) % X_INTVL == 0) {
             algorithm.exchangeElite(X_NUMBER);  // exchange top individuals
         }
@@ -120,6 +120,10 @@ int main(int argc, char* argv[]) {
             std::cout << "\t" << j << ") "
                       << algorithm.getPopulation(i).getFitness(j) << std::endl;
         }
+    }
+
+    for (const auto& info : algorithm.convergenceInfo) {
+        std::cout << "Generation: " << info.first << ", Best Fitness: " << info.second << std::endl;
     }
 
     std::cout << "Best solution found has objective value = "
