@@ -11,7 +11,7 @@ CXXFLAGS_DEBUG = -Wall -Wextra -std=c++17 -g -I src/brkgaAPI
 CXXFLAGS_PRD = -std=c++17 -O3 -march=native -I src/brkgaAPI
 
 # Source files
-SRCS = src/main.cpp src/SampleDecoder.cpp src/brkgaAPI/Population.cpp
+SRCS = src/IOReport.cpp src/main.cpp src/SampleDecoder.cpp src/brkgaAPI/Population.cpp
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)
@@ -19,7 +19,7 @@ OBJS_DEBUG = $(SRCS:.cpp=.o.debug)
 OBJS_PRD = $(SRCS:.cpp=.o.prd)
 
 # Header files
-HEADERS = src/brkgaAPI/BRKGA.h src/brkgaAPI/MTRand.h src/brkgaAPI/Population.h src/SampleDecoder.h
+HEADERS = src/brkgaAPI/BRKGA.h src/brkgaAPI/MTRand.h src/brkgaAPI/Population.h src/SampleDecoder.h src/IOReport.h
 
 # Target executable
 TARGET = main

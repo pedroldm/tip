@@ -84,6 +84,7 @@ class SampleDecoder {
     // Decode a chromosome, returning its fitness as a double-precision floating
     double decode(const std::vector<double>& chromosome) const;
     double fitness(std::vector<int> solution) const;
+    std::vector<int> outputDecode(const std::vector<double>& chromosome);
 };
 
 #endif  // SAMPLEDECODER_H

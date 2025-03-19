@@ -111,3 +111,20 @@ double SampleDecoder::decode(const std::vector<double>& chromosome) const {
 
     return this->fitness(decodedSolution);
 }
+
+std::vector<int> SampleDecoder::outputDecode(const std::vector<double>& chromosome) {
+    std::unordered_map<double, int> valueToIndexMap;
+    std::vector<double> sortedChromosome(chromosome);
+    std::sort(sortedChromosome.begin(), sortedChromosome.end());
+    std::vector<int> decodedSolution(this->slots, -1);
+
+    for (size_t i = 0; i < chromosome.size(); ++i) {
+        valueToIndexMap[chromosome[i]] = i;
+    }
+
+    for (size_t i = 0; i < this->tools; ++i) {
+        decodedSolution[valueToIndexMap[sortedChromosome[i]]] = i;
+    }
+
+    return decodedSolution;
+}
