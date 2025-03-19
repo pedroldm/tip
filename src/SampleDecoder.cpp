@@ -33,7 +33,7 @@
  *
  */
 
-#include "SampleDecoder.h"
+#include "SampleDecoder.hpp"
 
 SampleDecoder::SampleDecoder() {}
 

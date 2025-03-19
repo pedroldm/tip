@@ -1,78 +1,80 @@
-#include "IOReport.h"
+#include "IOReport.hpp"
 
 #include <cstdlib>
 #include <iostream>
+#include "json.hpp"
+
+using json = nlohmann::json;
 
 void IOReport::printIOReport() {
-    std::cout << "# ---------------- BRKGA PARAMETERS" << std::endl;
-    std::cout << "Filepath: " << this->filepath << std::endl;
-    std::cout << "Chromosome size (n): " << this->n << std::endl;
-    std::cout << "Population size (p): " << this->p << std::endl;
-    std::cout << "Elite fraction (pe): " << this->pe << std::endl;
-    std::cout << "Mutation fraction (pm): " << this->pm << std::endl;
-    std::cout << "Inheritance probability (rhoe): " << this->rhoe << std::endl;
-    std::cout << "Number of populations (K): " << this->K << std::endl;
-    std::cout << "Number of threads (MAXT): " << this->MAXT << std::endl;
-    std::cout << "Exchange interval (X_INTVL): " << this->X_INTVL << std::endl;
-    std::cout << "Number of exchanges (X_NUMBER): " << this->X_NUMBER << std::endl;
-    std::cout << "Maximum generations (MAX_GENS): " << this->MAX_GENS << std::endl;
-    std::cout << "Random number generator seed (rngSeed): " << this->rngSeed << std::endl;
-    std::cout << "Current generation: " << this->generation << std::endl << std::endl;
+    json report;
 
-    std::cout << "# ---------------- INSTANCE" << std::endl;
-    std::cout << "Tools: " << this->decoder.tools << std::endl;
-    std::cout << "Slots: " << this->decoder.slots << std::endl;
-    std::cout << "SOA Cost: " << this->decoder.SOACost << std::endl;
-    std::cout << "SOA Solution: ";
-    for (int i = 0; i < this->decoder.SOASolution.size(); ++i) {
-        std::cout << (this->decoder.SOASolution[i] == -1 ? std::string("X") : std::to_string(this->decoder.SOASolution[i]));
-        if (i < this->decoder.SOASolution.size() - 1) {
-            std::cout << ", ";
-        }
-    }
-    std::cout << std::endl;
+    // BRKGA PARAMETERS
+    report["BRKGA_PARAMETERS"] = {
+        {"Filepath", this->filepath},
+        {"Chromosome_size", this->n},
+        {"Population_size", this->p},
+        {"Elite_fraction", this->pe},
+        {"Mutation_fraction", this->pm},
+        {"Inheritance_probability", this->rhoe},
+        {"Number_of_populations", this->K},
+        {"Number_of_threads", this->MAXT},
+        {"Exchange_interval", this->X_INTVL},
+        {"Number_of_exchanges", this->X_NUMBER},
+        {"Maximum_generations", this->MAX_GENS},
+        {"Random_number_generator_seed", this->rngSeed},
+        {"Current_generation", this->generation}
+    };
 
-    std::cout << "Instance: " << std::endl;
-    for (size_t i = 0; i < this->decoder.instance.size(); ++i) {
-        for (size_t j = 0; j < this->decoder.instance[i].size(); ++j) {
-            std::cout << this->decoder.instance[i][j] << "\t";  // Using tab to separate values
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
+    // INSTANCE
+    report["INSTANCE"] = {
+        {"Tools", this->decoder.tools},
+        {"Slots", this->decoder.slots},
+        {"SOA_Cost", this->decoder.SOACost},
+        {"SOA_Solution", this->decoder.SOASolution},
+        {"Instance", this->decoder.instance}
+    };
 
-    std::cout << "# ---------------- TOP INDIVIDUALS" << std::endl;
-    const unsigned bound = std::min(p, unsigned(10));  // makes sure we have 10 individuals
+    // TOP INDIVIDUALS
+    json topIndividuals;
+    const unsigned bound = std::min(p, unsigned(10));  // Limit to top 10 individuals
     for (unsigned i = 0; i < K; ++i) {
-        std::cout << "Population #" << i << ":" << std::endl;
+        json population;
         for (unsigned j = 0; j < bound; ++j) {
-            std::cout << "\t" << j << ") "
-                      << this->algorithm->getPopulation(i).getFitness(j)
-                      << std::endl;
+            population.push_back({
+                {"rank", j},
+                {"fitness", this->algorithm->getPopulation(i).getFitness(j)}
+            });
         }
+        topIndividuals["Population_" + std::to_string(i)] = population;
     }
+    report["TOP_INDIVIDUALS"] = topIndividuals;
 
-    std::cout << std::endl <<  "# ---------------- CONVERGENCE REPORT" << std::endl;
+    // CONVERGENCE REPORT
+    json convergenceReport;
     for (const auto& info : this->algorithm->convergenceInfo) {
-        std::cout << "Generation:" << "\t" <<  info.first
-                  << "\t" << "Best Fitness:" << "\t" << info.second << std::endl;
+        convergenceReport.push_back({
+            {"generation", info.first},
+            {"best_fitness", info.second}
+        });
     }
+    report["CONVERGENCE_REPORT"] = convergenceReport;
 
-    std::cout << std::endl <<  "# ---------------- EXECUTION TIME REPORT" << std::endl;
+    // EXECUTION TIME REPORT
     std::chrono::duration<double> duration = this->finishTime - this->startTime;
-    std::cout << duration.count() << " seconds." << std::endl;
+    report["EXECUTION_TIME_REPORT"] = {
+        {"duration_seconds", duration.count()}
+    };
 
-    std::cout << std::endl <<  "# ---------------- RESULT" << std::endl;
+    // RESULT
     std::vector<int> bestSolution = this->decoder.outputDecode(this->algorithm->getBestChromosome());
-    std::cout << "Best Solution: ";
-    for (int i = 0; i < bestSolution.size(); ++i) {
-        std::cout << (bestSolution[i] == -1 ? std::string("X") : std::to_string(bestSolution[i]));
-        if (i < bestSolution.size() - 1) {
-            std::cout << ", ";
-        }
-    }
-    std::cout << std::endl;
-    std::cout << "Min f(x): " << this->algorithm->getBestFitness() << std::endl;
+    report["RESULT"] = {
+        {"Best_Solution", bestSolution},
+        {"Min_f(x)", this->algorithm->getBestFitness()}
+    };
+
+    // Print the JSON report
+    std::cout << report.dump(4) << std::endl;  // Pretty-print with 4 spaces indentation
 }
 
 void IOReport::run() {

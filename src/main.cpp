@@ -37,10 +37,10 @@
 #include <algorithm>
 #include <iostream>
 
-#include "SampleDecoder.h"
+#include "SampleDecoder.hpp"
 #include "brkgaAPI/BRKGA.h"
 #include "brkgaAPI/MTRand.h"
-#include "IOReport.h"
+#include "IOReport.hpp"
 
 int main(int argc, char* argv[]) {
     IOReport ior(argc, argv);

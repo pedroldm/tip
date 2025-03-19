@@ -19,7 +19,7 @@ OBJS_DEBUG = $(SRCS:.cpp=.o.debug)
 OBJS_PRD = $(SRCS:.cpp=.o.prd)
 
 # Header files
-HEADERS = src/brkgaAPI/BRKGA.h src/brkgaAPI/MTRand.h src/brkgaAPI/Population.h src/SampleDecoder.h src/IOReport.h
+HEADERS = src/brkgaAPI/BRKGA.hpp src/brkgaAPI/MTRand.hpp src/brkgaAPI/Population.hpp src/SampleDecoder.hpp src/IOReport.hpp src/json.hpp
 
 # Target executable
 TARGET = main
