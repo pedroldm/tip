@@ -95,6 +95,31 @@ double SampleDecoder::fitness(const std::vector<int> solution) const {
     return totalCost;
 }
 
+std::vector<double> SampleDecoder::encode(const std::vector<int>& solution, std::vector<double>& originalChromosome) const {
+    std::sort(originalChromosome.begin(), originalChromosome.end());
+    std::unordered_map<int, int> toolMap;
+    std::vector<double> newChromosome(this->slots, -1);
+
+    for(int i = 0 ; i < this->slots; i++) {
+        if (solution[i] != -1)
+            toolMap[solution[i]] = i;
+    }
+
+    for (const auto& [key, value] : toolMap) {
+        newChromosome[value] = originalChromosome[key];
+    }
+
+    
+    short j = this->tools;
+    for(int i = 0; i < this->slots; i++) {
+        if(newChromosome[i] == -1) {
+            newChromosome[i] = originalChromosome[j++];
+        }
+    }
+
+    return newChromosome;
+}
+
 double SampleDecoder::decode(const std::vector<double>& chromosome) const {
     std::unordered_map<double, int> valueToIndexMap;
     std::vector<double> sortedChromosome(chromosome);
