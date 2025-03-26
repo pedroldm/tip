@@ -45,6 +45,6 @@
 int main(int argc, char* argv[]) {
     IOReport ior(argc, argv);
     ior.run();
-    ior.printIOReport();
+    ior.irace ? ior.bestFitness() : ior.printIOReport();
     return 0;
 }
