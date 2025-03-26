@@ -17,6 +17,7 @@ class IOReport {
         unsigned MAX_GENS = 1000;   // número máximo de gerações
         long unsigned rngSeed = 0;  // semente do gerador de números aleatórios
         unsigned generation = 0;
+        bool irace = false;
         std::string filepath;
 
         BRKGA<SampleDecoder, MTRand>* algorithm;
@@ -31,4 +32,5 @@ class IOReport {
 
         void printIOReport();
         void run();
+        void bestFitness();
 };

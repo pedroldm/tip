@@ -6,6 +6,10 @@
 
 using json = nlohmann::json;
 
+void IOReport::bestFitness() {
+    std::cout << (int) this->algorithm->getBestFitness();
+}
+
 void IOReport::printIOReport() {
     json report;
 
@@ -23,8 +27,7 @@ void IOReport::printIOReport() {
         {"Number_of_exchanges", this->X_NUMBER},
         {"Maximum_generations", this->MAX_GENS},
         {"Random_number_generator_seed", this->rngSeed},
-        {"Current_generation", this->generation}
-    };
+        {"Current_generation", this->generation}};
 
     // INSTANCE
     report["INSTANCE"] = {
@@ -32,8 +35,7 @@ void IOReport::printIOReport() {
         {"Slots", this->decoder.slots},
         {"SOA_Cost", this->decoder.SOACost},
         {"SOA_Solution", this->decoder.SOASolution},
-        {"Instance", this->decoder.instance}
-    };
+        {"Instance", this->decoder.instance}};
 
     // TOP INDIVIDUALS
     json topIndividuals;
@@ -41,10 +43,8 @@ void IOReport::printIOReport() {
     for (unsigned i = 0; i < K; ++i) {
         json population;
         for (unsigned j = 0; j < bound; ++j) {
-            population.push_back({
-                {"rank", j},
-                {"fitness", this->algorithm->getPopulation(i).getFitness(j)}
-            });
+            population.push_back({{"rank", j},
+                                  {"fitness", this->algorithm->getPopulation(i).getFitness(j)}});
         }
         topIndividuals["Population_" + std::to_string(i)] = population;
     }
@@ -53,25 +53,21 @@ void IOReport::printIOReport() {
     // CONVERGENCE REPORT
     json convergenceReport;
     for (const auto& info : this->algorithm->convergenceInfo) {
-        convergenceReport.push_back({
-            {"generation", info.first},
-            {"best_fitness", info.second}
-        });
+        convergenceReport.push_back({{"generation", info.first},
+                                     {"best_fitness", info.second}});
     }
     report["CONVERGENCE_REPORT"] = convergenceReport;
 
     // EXECUTION TIME REPORT
     std::chrono::duration<double> duration = this->finishTime - this->startTime;
     report["EXECUTION_TIME_REPORT"] = {
-        {"duration_seconds", duration.count()}
-    };
+        {"duration_seconds", duration.count()}};
 
     // RESULT
     std::vector<int> bestSolution = this->decoder.outputDecode(this->algorithm->getBestChromosome());
     report["RESULT"] = {
         {"Best_Solution", bestSolution},
-        {"Min_f(x)", this->algorithm->getBestFitness()}
-    };
+        {"Min_f(x)", this->algorithm->getBestFitness()}};
 
     // Print the JSON report
     std::cout << report.dump(4) << std::endl;  // Pretty-print with 4 spaces indentation
@@ -121,6 +117,10 @@ IOReport::IOReport(int argc, char* argv[]) {
             this->MAX_GENS = std::atoi(arg.substr(11).c_str());
         else if (arg.find("--rngSeed=") == 0)
             this->rngSeed = std::strtoul(arg.substr(10).c_str(), nullptr, 10);
+        else if (arg.find("--irace=") == 0) {
+            std::string value = arg.substr(8);
+            this->irace = (value == "true");
+        }
     }
 
     if (this->filepath.empty()) {
