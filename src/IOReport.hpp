@@ -1,6 +1,10 @@
+#ifndef IOREPORT_HPP
+#define IOREPORT_HPP
+
 #include "SampleDecoder.hpp"
 #include "brkgaAPI/BRKGA.h"
 #include "brkgaAPI/MTRand.h"
+#include "VND.hpp"
 #include <chrono>
 
 class IOReport {
@@ -17,12 +21,15 @@ class IOReport {
         unsigned MAX_GENS = 1000;   // número máximo de gerações
         long unsigned rngSeed = 0;  // semente do gerador de números aleatórios
         unsigned generation = 0;
+        int maxIterations = 1000;
+        double vndProbability = 0.05;
         bool irace = false;
         std::string filepath;
 
         BRKGA<SampleDecoder, MTRand>* algorithm;
         MTRand* rng;
         SampleDecoder decoder;
+        VND vnd;
 
         std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
         std::chrono::time_point<std::chrono::high_resolution_clock> finishTime;
@@ -34,3 +41,5 @@ class IOReport {
         void run();
         void bestFitness();
 };
+
+#endif  // IOREPORT_HPP

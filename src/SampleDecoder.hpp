@@ -54,16 +54,17 @@
  *
  */
 
-#ifndef SAMPLEDECODER_H
-#define SAMPLEDECODER_H
+#ifndef SAMPLEDECODER_HPP
+#define SAMPLEDECODER_HPP
 
 #include <algorithm>
-#include <vector>
-#include <string>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <string>
 #include <unordered_map>
+#include <vector>
+#include "Chromosome.hpp"
 
 class SampleDecoder {
    public:
@@ -73,19 +74,21 @@ class SampleDecoder {
     std::vector<int> SOASolution;
     std::vector<std::vector<int>> instance;
 
-	SampleDecoder(int tools, int slots, std::vector<int> solution, std::vector<int> SOASolution,
-		std::vector<std::vector<int>> instance, int SOACost = 0);
+    SampleDecoder(int tools, int slots, std::vector<int> solution,
+                  std::vector<int> SOASolution,
+                  std::vector<std::vector<int>> instance, int SOACost = 0);
 
-	SampleDecoder(const std::string& filepath);
+    SampleDecoder(const std::string& filepath);
 
     SampleDecoder();   // Constructor
     ~SampleDecoder();  // Destructor
 
     // Decode a chromosome, returning its fitness as a double-precision floating
-    double decode(const std::vector<double>& chromosome) const;
-    std::vector<double> encode(const std::vector<int>& solution, std::vector<double>& chromosome) const;
+    double decode(const Chromosome& chromosome) const;
+    Chromosome encode(const std::vector<int>& solution,
+                      Chromosome& chromosome) const;
     double fitness(std::vector<int> solution) const;
-    std::vector<int> outputDecode(const std::vector<double>& chromosome);
+    std::vector<int> outputDecode(const Chromosome& chromosome);
 };
 
-#endif  // SAMPLEDECODER_H
+#endif  // SAMPLEDECODER_HPP

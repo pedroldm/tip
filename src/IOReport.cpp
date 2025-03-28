@@ -76,6 +76,7 @@ void IOReport::printIOReport() {
 void IOReport::run() {
     this->startTime = std::chrono::high_resolution_clock::now();
     do {
+        std::cout << "Gen : " << this->generation << " - Best fitness : " << this->algorithm->getBestFitness() << std::endl;
         this->algorithm->evolve();  // evolve the population for one generation
         this->algorithm->registerConvergence(this->generation);
         if ((++this->generation) % this->X_INTVL == 0) {
@@ -107,8 +108,12 @@ IOReport::IOReport(int argc, char* argv[]) {
             this->rhoe = std::atof(arg.substr(7).c_str());
         else if (arg.find("--K=") == 0)
             this->K = std::atoi(arg.substr(4).c_str());
+        else if (arg.find("--maxIterations=") == 0)
+            this->maxIterations = std::atoi(arg.substr(16).c_str());
         else if (arg.find("--MAXT=") == 0)
             this->MAXT = std::atoi(arg.substr(7).c_str());
+        else if (arg.find("--vndProbability=") == 0)
+            this->vndProbability = std::atof(arg.substr(17).c_str());
         else if (arg.find("--X_INTVL=") == 0)
             this->X_INTVL = std::atoi(arg.substr(10).c_str());
         else if (arg.find("--X_NUMBER=") == 0)
@@ -131,7 +136,8 @@ IOReport::IOReport(int argc, char* argv[]) {
     this->rng = new MTRand(this->rngSeed);
     this->decoder = SampleDecoder(this->filepath);
     this->n = this->decoder.slots;
+    this->vnd = VND(this->decoder, this->maxIterations);
     this->algorithm = new BRKGA<SampleDecoder, MTRand>(
-        this->n, this->p, this->pe, this->pm, this->rhoe, this->decoder,
-        *this->rng, this->K, this->MAXT);
+        this->n, this->p, this->pe, this->pm, this->rhoe, this->vndProbability, this->decoder,
+        *this->rng, this->vnd, this->K, this->MAXT);
 }

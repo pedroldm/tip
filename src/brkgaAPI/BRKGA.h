@@ -80,11 +80,13 @@
 #include <stdexcept>
 
 #include "Population.h"
+#include "../VND.hpp"
 
 template <class Decoder, class RNG>
 class BRKGA {
    public:
    std::vector<std::pair<unsigned, double>> convergenceInfo;
+   VND vnd;
 
     /*
      * Default constructor
@@ -101,8 +103,8 @@ class BRKGA {
      *                WARNING: Decoder::decode() MUST be thread-safe; safe if implemented as
      *                + double Decoder::decode(std::vector< double >& chromosome) const
      */
-    BRKGA(unsigned n, unsigned p, double pe, double pm, double rhoe, const Decoder& refDecoder,
-          RNG& refRNG, unsigned K = 1, unsigned MAX_THREADS = 1);
+    BRKGA(unsigned n, unsigned p, double pe, double pm, double rhoe, double vndProbability, const Decoder& refDecoder,
+          RNG& refRNG, VND vnd, unsigned K = 1, unsigned MAX_THREADS = 1);
 
     /**
      * Destructor
@@ -136,7 +138,7 @@ class BRKGA {
     /**
      * Returns the chromosome with best fitness so far among all populations
      */
-    const std::vector<double>& getBestChromosome() const;
+    Chromosome& getBestChromosome() const;
 
     /**
      * Returns the best fitness found so far among all populations
@@ -167,6 +169,7 @@ class BRKGA {
     const unsigned pe;  // number of elite items in the population
     const unsigned pm;  // number of mutants introduced at each generation into the population
     const double rhoe;  // probability that an offspring inherits the allele of its elite parent
+    const double vndProbability = 0.05;
 
     // Templates:
     RNG& refRNG;                // reference to the random number generator
@@ -183,12 +186,12 @@ class BRKGA {
     // Local operations:
     void initialize(const unsigned i);  // initialize current population 'i' with random keys
     void evolution(Population& curr, Population& next);
-    bool isRepeated(const std::vector<double>& chrA, const std::vector<double>& chrB) const;
+    bool isRepeated(Chromosome& chrA, Chromosome& chrB) const;
 };
 
 template <class Decoder, class RNG>
-BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm, double _rhoe,
-                           const Decoder& decoder, RNG& rng, unsigned _K, unsigned MAX) : n(_n), p(_p), pe(unsigned(_pe * p)), pm(unsigned(_pm * p)), rhoe(_rhoe), refRNG(rng), refDecoder(decoder), K(_K), MAX_THREADS(MAX), previous(K, 0), current(K, 0) {
+BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm, double _rhoe, double vndProbability,
+                           const Decoder& decoder, RNG& rng, VND vnd, unsigned _K, unsigned MAX) : n(_n), p(_p), pe(unsigned(_pe * p)), pm(unsigned(_pm * p)), rhoe(_rhoe), vndProbability(vndProbability), refRNG(rng), vnd(vnd), refDecoder(decoder), K(_K), MAX_THREADS(MAX), previous(K, 0), current(K, 0) {
     // Error check:
     using std::range_error;
     if (n == 0) {
@@ -265,7 +268,7 @@ double BRKGA<Decoder, RNG>::getBestFitness() const {
 }
 
 template <class Decoder, class RNG>
-const std::vector<double>& BRKGA<Decoder, RNG>::getBestChromosome() const {
+Chromosome& BRKGA<Decoder, RNG>::getBestChromosome() const {
     unsigned bestK = 0;
     for (unsigned i = 1; i < K; ++i) {
         if (current[i]->getBestFitness() < current[bestK]->getBestFitness()) {
@@ -318,9 +321,9 @@ void BRKGA<Decoder, RNG>::exchangeElite(unsigned M) {
             // Copy the M best of Population j into Population i:
             for (unsigned m = 0; m < M; ++m) {
                 // Copy the m-th best of Population j into the 'dest'-th position of Population i:
-                const std::vector<double>& bestOfJ = current[j]->getChromosome(m);
+                const std::vector<double>& bestOfJ = current[j]->getChromosome(m).chromosome;
 
-                std::copy(bestOfJ.begin(), bestOfJ.end(), current[i]->getChromosome(dest).begin());
+                std::copy(bestOfJ.begin(), bestOfJ.end(), current[i]->getChromosome(dest).chromosome.begin());
 
                 current[i]->fitness[dest].first = current[j]->fitness[m].first;
 
@@ -396,6 +399,23 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next) {
         }
         ++i;
     }
+
+    for(int k = 0 ; k < pe ; k++) {
+        if(!next.population[k].refined) {
+            next.population[k] = this->vnd.VNDSearch(next.population[k]);
+            next.population[k].refined = true;
+        }
+    }
+
+    for(int k = pe ; k < p ; k++) {
+        if(!next.population[k].refined && refRNG.rand() < this->vndProbability) {
+            next.population[k] = this->vnd.VNDSearch(next.population[k]);
+            next.population[k].refined = true;
+        }
+    }
+
+    next.sortFitness();
+    int ks = 0;
 
 // Time to compute fitness, in parallel:
 #ifdef _OPENMP

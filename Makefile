@@ -2,16 +2,16 @@
 CXX = g++
 
 # Compiler flags for development build
-CXXFLAGS = -Wall -Wextra -std=c++17 -O2 -I src/brkgaAPI
+CXXFLAGS = -fopenmp -Wall -Wextra -std=c++17 -O2 -I src/brkgaAPI
 
 # Compiler flags for debug build
-CXXFLAGS_DEBUG = -Wall -Wextra -std=c++17 -g -I src/brkgaAPI
+CXXFLAGS_DEBUG = -fopenmp -Wall -Wextra -std=c++17 -g -I src/brkgaAPI
 
 # Compiler flags for production build
-CXXFLAGS_PRD = -std=c++17 -O3 -march=native -I src/brkgaAPI
+CXXFLAGS_PRD = -fopenmp -std=c++17 -O3 -march=native -I src/brkgaAPI
 
 # Source files
-SRCS = src/IOReport.cpp src/main.cpp src/SampleDecoder.cpp src/brkgaAPI/Population.cpp
+SRCS = src/main.cpp src/SampleDecoder.cpp src/brkgaAPI/Population.cpp src/IOReport.cpp src/VND.cpp src/Chromosome.cpp
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)
@@ -19,7 +19,7 @@ OBJS_DEBUG = $(SRCS:.cpp=.o.debug)
 OBJS_PRD = $(SRCS:.cpp=.o.prd)
 
 # Header files
-HEADERS = src/brkgaAPI/BRKGA.hpp src/brkgaAPI/MTRand.hpp src/brkgaAPI/Population.hpp src/SampleDecoder.hpp src/IOReport.hpp src/json.hpp
+HEADERS = src/brkgaAPI/BRKGA.h src/brkgaAPI/MTRand.h src/brkgaAPI/Population.h src/SampleDecoder.hpp src/IOReport.hpp src/VND.hpp src/Chromosome.hpp
 
 # Target executable
 TARGET = main
