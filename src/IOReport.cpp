@@ -2,12 +2,13 @@
 
 #include <cstdlib>
 #include <iostream>
+
 #include "json.hpp"
 
 using json = nlohmann::json;
 
 void IOReport::bestFitness() {
-    std::cout << (int) this->algorithm->getBestFitness();
+    std::cout << (int)this->algorithm->getBestFitness();
 }
 
 void IOReport::printIOReport() {
@@ -30,21 +31,22 @@ void IOReport::printIOReport() {
         {"Current_generation", this->generation}};
 
     // INSTANCE
-    report["INSTANCE"] = {
-        {"Tools", this->decoder.tools},
-        {"Slots", this->decoder.slots},
-        {"SOA_Cost", this->decoder.SOACost},
-        {"SOA_Solution", this->decoder.SOASolution},
-        {"Instance", this->decoder.instance}};
+    report["INSTANCE"] = {{"Tools", this->decoder.tools},
+                          {"Slots", this->decoder.slots},
+                          {"SOA_Cost", this->decoder.SOACost},
+                          {"SOA_Solution", this->decoder.SOASolution},
+                          {"Instance", this->decoder.instance}};
 
     // TOP INDIVIDUALS
     json topIndividuals;
-    const unsigned bound = std::min(p, unsigned(10));  // Limit to top 10 individuals
+    const unsigned bound =
+        std::min(p, unsigned(10));  // Limit to top 10 individuals
     for (unsigned i = 0; i < K; ++i) {
         json population;
         for (unsigned j = 0; j < bound; ++j) {
-            population.push_back({{"rank", j},
-                                  {"fitness", this->algorithm->getPopulation(i).getFitness(j)}});
+            population.push_back(
+                {{"rank", j},
+                 {"fitness", this->algorithm->getPopulation(i).getFitness(j)}});
         }
         topIndividuals["Population_" + std::to_string(i)] = population;
     }
@@ -53,36 +55,40 @@ void IOReport::printIOReport() {
     // CONVERGENCE REPORT
     json convergenceReport;
     for (const auto& info : this->algorithm->convergenceInfo) {
-        convergenceReport.push_back({{"generation", info.first},
-                                     {"best_fitness", info.second}});
+        convergenceReport.push_back(
+            {{"generation", info.first}, {"best_fitness", info.second}});
     }
     report["CONVERGENCE_REPORT"] = convergenceReport;
 
     // EXECUTION TIME REPORT
     std::chrono::duration<double> duration = this->finishTime - this->startTime;
-    report["EXECUTION_TIME_REPORT"] = {
-        {"duration_seconds", duration.count()}};
+    report["EXECUTION_TIME_REPORT"] = {{"duration_seconds", duration.count()}};
 
     // RESULT
-    std::vector<int> bestSolution = this->decoder.outputDecode(this->algorithm->getBestChromosome());
-    report["RESULT"] = {
-        {"Best_Solution", bestSolution},
-        {"Min_f(x)", this->algorithm->getBestFitness()}};
+    std::vector<int> bestSolution =
+        this->decoder.outputDecode(this->algorithm->getBestChromosome());
+    report["RESULT"] = {{"Best_Solution", bestSolution},
+                        {"Min_f(x)", this->algorithm->getBestFitness()}};
 
     // Print the JSON report
-    std::cout << report.dump(4) << std::endl;  // Pretty-print with 4 spaces indentation
+    std::cout << report.dump(4)
+              << std::endl;  // Pretty-print with 4 spaces indentation
 }
 
 void IOReport::run() {
     this->startTime = std::chrono::high_resolution_clock::now();
+    const auto maxDuration = std::chrono::minutes(this->timeLimit);
     do {
-        std::cout << "Gen : " << this->generation << " - Best fitness : " << this->algorithm->getBestFitness() << std::endl;
-        this->algorithm->evolve();  // evolve the population for one generation
+        this->algorithm->evolve(
+            this->useVND);  // evolve the population for one generation
         this->algorithm->registerConvergence(this->generation);
         if ((++this->generation) % this->X_INTVL == 0) {
             this->algorithm->exchangeElite(
                 this->X_NUMBER);  // exchange top individuals
         }
+        if (std::chrono::high_resolution_clock::now() - this->startTime >
+            maxDuration)
+            break;
     } while (this->generation < this->MAX_GENS);
     this->finishTime = std::chrono::high_resolution_clock::now();
 }
@@ -108,12 +114,20 @@ IOReport::IOReport(int argc, char* argv[]) {
             this->rhoe = std::atof(arg.substr(7).c_str());
         else if (arg.find("--K=") == 0)
             this->K = std::atoi(arg.substr(4).c_str());
+        else if (arg.find("--timeLimit=") == 0)
+            this->timeLimit = std::atoi(arg.substr(12).c_str());
         else if (arg.find("--maxIterations=") == 0)
             this->maxIterations = std::atoi(arg.substr(16).c_str());
         else if (arg.find("--MAXT=") == 0)
             this->MAXT = std::atoi(arg.substr(7).c_str());
-        else if (arg.find("--vndProbability=") == 0)
-            this->vndProbability = std::atof(arg.substr(17).c_str());
+        else if (arg.find("--lsCoveragePercentage=") == 0)
+            this->lsCoveragePercentage = std::atof(arg.substr(23).c_str());
+        else if (arg.find("--lsEliteApplicationPercentage=") == 0)
+            this->lsEliteApplicationPercentage =
+                std::atof(arg.substr(31).c_str());
+        else if (arg.find("--lsNonEliteAplicationPercentage=") == 0)
+            this->lsNonEliteAplicationPercentage =
+                std::atof(arg.substr(33).c_str());
         else if (arg.find("--X_INTVL=") == 0)
             this->X_INTVL = std::atoi(arg.substr(10).c_str());
         else if (arg.find("--X_NUMBER=") == 0)
@@ -125,6 +139,9 @@ IOReport::IOReport(int argc, char* argv[]) {
         else if (arg.find("--irace=") == 0) {
             std::string value = arg.substr(8);
             this->irace = (value == "true");
+        } else if (arg.find("--useVND=") == 0) {
+            std::string value = arg.substr(9);
+            this->useVND = (value == "true");
         }
     }
 
@@ -138,6 +155,8 @@ IOReport::IOReport(int argc, char* argv[]) {
     this->n = this->decoder.slots;
     this->vnd = VND(this->decoder, this->maxIterations);
     this->algorithm = new BRKGA<SampleDecoder, MTRand>(
-        this->n, this->p, this->pe, this->pm, this->rhoe, this->vndProbability, this->decoder,
-        *this->rng, this->vnd, this->K, this->MAXT);
+        this->n, this->p, this->pe, this->pm, this->rhoe,
+        this->lsCoveragePercentage, this->lsEliteApplicationPercentage,
+        this->lsNonEliteAplicationPercentage, this->decoder, *this->rng,
+        this->vnd, this->K, this->MAXT);
 }

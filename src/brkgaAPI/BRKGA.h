@@ -1,14 +1,16 @@
 /**
  * BRKGA.h
  *
- * This template class encapsulates a Biased Random-key Genetic Algorithm for minimization problems
- * with K  independent Populations stored in two vectors of Population, current and previous.
- * It supports multi-threading via OpenMP, and implements the following key methods:
+ * This template class encapsulates a Biased Random-key Genetic Algorithm for
+ * minimization problems with K  independent Populations stored in two vectors
+ * of Population, current and previous. It supports multi-threading via OpenMP,
+ * and implements the following key methods:
  *
- * - BRKGA() constructor: initializes the populations with parameters described below.
- * - evolve() operator: evolve each Population following the BRKGA methodology. This method
- *                      supports OpenMP to evolve up to K independent Populations in parallel.
- *                      Please note that double Decoder::decode(...) MUST be thread-safe.
+ * - BRKGA() constructor: initializes the populations with parameters described
+ * below.
+ * - evolve() operator: evolve each Population following the BRKGA methodology.
+ * This method supports OpenMP to evolve up to K independent Populations in
+ * parallel. Please note that double Decoder::decode(...) MUST be thread-safe.
  *
  * Required parameters:
  * - n: number of genes in each chromosome
@@ -19,25 +21,30 @@
  *
  * Optional parameters:
  * - K: number of independent Populations (set to 1 if not supplied)
- * - MAX_THREADS: number of threads to perform parallel decoding (set to 1 if not supplied)
- *                WARNING: Decoder::decode() MUST be thread-safe if MAX_THREADS > 1!
+ * - MAX_THREADS: number of threads to perform parallel decoding (set to 1 if
+ * not supplied) WARNING: Decoder::decode() MUST be thread-safe if MAX_THREADS >
+ * 1!
  *
  * The following objects are required upon declaration:
  * RNG: random number generator that implements the methods below.
  *     - RNG(unsigned long seed) to initialize a new RNG with 'seed'
- *     - double rand() to return a double precision random deviate in range [0,1)
- *     - unsigned long randInt() to return a >=32-bit unsigned random deviate in range [0,2^32-1)
- *     - unsigned long randInt(N) to return a unsigned random deviate in range [0, N] with N < 2^32
+ *     - double rand() to return a double precision random deviate in range
+ * [0,1)
+ *     - unsigned long randInt() to return a >=32-bit unsigned random deviate in
+ * range [0,2^32-1)
+ *     - unsigned long randInt(N) to return a unsigned random deviate in range
+ * [0, N] with N < 2^32
  *
- * Decoder: problem-specific decoder that implements any of the decode methods outlined below. When
- *          compiling and linking BRKGA with -fopenmp (i.e., with multithreading support via
- *          OpenMP), the method must be thread-safe.
- *     - double decode(const vector< double >& chromosome) const, if you don't want to change
- *       chromosomes inside the framework, or
- *     - double decode(vector< double >& chromosome) const, if you'd like to update a chromosome.
- *     WARNING: even though both methods use const correctness to enforce that they are thread safe
- *              the use of mutable within the Decoder class could void such a feature! In other
- *              words, DO NOT use mutable within the decoder.
+ * Decoder: problem-specific decoder that implements any of the decode methods
+ * outlined below. When compiling and linking BRKGA with -fopenmp (i.e., with
+ * multithreading support via OpenMP), the method must be thread-safe.
+ *     - double decode(const vector< double >& chromosome) const, if you don't
+ * want to change chromosomes inside the framework, or
+ *     - double decode(vector< double >& chromosome) const, if you'd like to
+ * update a chromosome. WARNING: even though both methods use const correctness
+ * to enforce that they are thread safe the use of mutable within the Decoder
+ * class could void such a feature! In other words, DO NOT use mutable within
+ * the decoder.
  *
  * Created on : Jun 22, 2010 by rtoso
  * Last update: Sep 15, 2011 by rtoso
@@ -50,15 +57,15 @@
  * Rodrigo Franco Toso (rfrancotoso@gmail.com) and
  * Mauricio G.C. Resende
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
- * of the Software, and to permit persons to whom the Software is furnished to do
- * so, subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -78,15 +85,17 @@
 #include <algorithm>
 #include <exception>
 #include <stdexcept>
+#include <random>
+#include <vector>
 
-#include "Population.h"
 #include "../VND.hpp"
+#include "Population.h"
 
 template <class Decoder, class RNG>
 class BRKGA {
    public:
-   std::vector<std::pair<unsigned, double>> convergenceInfo;
-   VND vnd;
+    std::vector<std::pair<unsigned, double>> convergenceInfo;
+    VND vnd;
 
     /*
      * Default constructor
@@ -95,15 +104,20 @@ class BRKGA {
      * - p: number of elements in each population
      * - pe: pct of elite items into each population
      * - pm: pct of mutants introduced at each generation into the population
-     * - rhoe: probability that an offspring inherits the allele of its elite parent
+     * - rhoe: probability that an offspring inherits the allele of its elite
+     * parent
      *
      * Optional parameters:
      * - K: number of independent Populations
      * - MAX_THREADS: number of threads to perform parallel decoding
-     *                WARNING: Decoder::decode() MUST be thread-safe; safe if implemented as
-     *                + double Decoder::decode(std::vector< double >& chromosome) const
+     *                WARNING: Decoder::decode() MUST be thread-safe; safe if
+     * implemented as
+     *                + double Decoder::decode(std::vector< double >&
+     * chromosome) const
      */
-    BRKGA(unsigned n, unsigned p, double pe, double pm, double rhoe, double vndProbability, const Decoder& refDecoder,
+    BRKGA(unsigned n, unsigned p, double pe, double pm, double rhoe,
+          double lsCoveragePercentage, double lsEliteApplicationPercentage,
+          double lsNonEliteAplicationPercentage, const Decoder& refDecoder,
           RNG& refRNG, VND vnd, unsigned K = 1, unsigned MAX_THREADS = 1);
 
     /**
@@ -119,10 +133,12 @@ class BRKGA {
     /**
      * Evolve the current populations following the guidelines of BRKGAs
      * @param generations number of generations (must be even and nonzero)
-     * @param J interval to exchange elite chromosomes (must be even; 0 ==> no synchronization)
-     * @param M number of elite chromosomes to select from each population in order to exchange
+     * @param J interval to exchange elite chromosomes (must be even; 0 ==> no
+     * synchronization)
+     * @param M number of elite chromosomes to select from each population in
+     * order to exchange
      */
-    void evolve(unsigned generations = 1);
+    void evolve(bool useVND, unsigned generations = 1);
 
     /**
      * Exchange elite-solutions between the populations
@@ -156,20 +172,28 @@ class BRKGA {
     unsigned getMAX_THREADS() const;
 
     /**
-     * Registers the current best fitness and generation number in the convergence information.
+     * Registers the current best fitness and generation number in the
+     * convergence information.
      * @param currentGeneration The current generation number.
      */
     void registerConvergence(unsigned int currentGeneration);
 
    private:
-    // I don't see any reason to pimpl the internal methods and data, so here they are:
-    // Hyperparameters:
+    // I don't see any reason to pimpl the internal methods and data, so here
+    // they are: Hyperparameters:
     const unsigned n;   // number of genes in the chromosome
     const unsigned p;   // number of elements in the population
     const unsigned pe;  // number of elite items in the population
-    const unsigned pm;  // number of mutants introduced at each generation into the population
-    const double rhoe;  // probability that an offspring inherits the allele of its elite parent
-    const double vndProbability = 0.05;
+    const unsigned pm;  // number of mutants introduced at each generation into
+                        // the population
+    const double rhoe;  // probability that an offspring inherits the allele of
+                        // its elite parent
+    double lsCoveragePercentage = 1.0;
+    double lsEliteApplicationPercentage = 1.0;
+    double lsNonEliteAplicationPercentage = 0.05;
+    std::vector<std::pair<int, int>> searchPairs;
+    int pairsToConsider;    // number of pairs to consider in the local search
+    std::mt19937 rng_engine;
 
     // Templates:
     RNG& refRNG;                // reference to the random number generator
@@ -184,14 +208,35 @@ class BRKGA {
     std::vector<Population*> current;   // current populations
 
     // Local operations:
-    void initialize(const unsigned i);  // initialize current population 'i' with random keys
-    void evolution(Population& curr, Population& next);
+    void initialize(const unsigned i);  // initialize current population 'i'
+                                        // with random keys
+    void evolution(Population& curr, Population& next, bool useVND);
     bool isRepeated(Chromosome& chrA, Chromosome& chrB) const;
 };
 
 template <class Decoder, class RNG>
-BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm, double _rhoe, double vndProbability,
-                           const Decoder& decoder, RNG& rng, VND vnd, unsigned _K, unsigned MAX) : n(_n), p(_p), pe(unsigned(_pe * p)), pm(unsigned(_pm * p)), rhoe(_rhoe), vndProbability(vndProbability), refRNG(rng), vnd(vnd), refDecoder(decoder), K(_K), MAX_THREADS(MAX), previous(K, 0), current(K, 0) {
+BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm,
+                           double _rhoe, double lsCoveragePercentage,
+                           double lsEliteApplicationPercentage,
+                           double lsNonEliteAplicationPercentage,
+                           const Decoder& decoder, RNG& rng, VND vnd,
+                           unsigned _K, unsigned MAX)
+    : n(_n),
+      p(_p),
+      pe(unsigned(_pe * p)),
+      pm(unsigned(_pm * p)),
+      rhoe(_rhoe),
+      lsCoveragePercentage(lsCoveragePercentage),
+      lsEliteApplicationPercentage(lsEliteApplicationPercentage),
+      lsNonEliteAplicationPercentage(lsNonEliteAplicationPercentage),
+      refRNG(rng),
+      vnd(vnd),
+      refDecoder(decoder),
+      K(_K),
+      MAX_THREADS(MAX),
+      previous(K, 0),
+      current(K, 0),
+      rng_engine(std::random_device{}()) {
     // Error check:
     using std::range_error;
     if (n == 0) {
@@ -204,19 +249,23 @@ BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm, dou
         throw range_error("Elite-set size equals zero.");
     }
     if (pe > p) {
-        throw range_error("Elite-set size greater than population size (pe > p).");
+        throw range_error(
+            "Elite-set size greater than population size (pe > p).");
     }
     if (pm > p) {
-        throw range_error("Mutant-set size (pm) greater than population size (p).");
+        throw range_error(
+            "Mutant-set size (pm) greater than population size (p).");
     }
     if (pe + pm > p) {
-        throw range_error("elite + mutant sets greater than population size (p).");
+        throw range_error(
+            "elite + mutant sets greater than population size (p).");
     }
     if (K == 0) {
         throw range_error("Number of parallel populations cannot be zero.");
     }
 
-    // Initialize and decode each chromosome of the current population, then copy to previous:
+    // Initialize and decode each chromosome of the current population, then
+    // copy to previous:
     for (unsigned i = 0; i < K; ++i) {
         // Allocate:
         current[i] = new Population(n, p);
@@ -227,6 +276,14 @@ BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm, dou
         // Then just copy to previous:
         previous[i] = new Population(*current[i]);
     }
+
+    for (int i = 0; i < this->refDecoder.slots; i++) {
+        for (int j = i + 1; j < this->refDecoder.slots; j++) {
+            this->searchPairs.emplace_back(i, j);
+        }
+    }
+
+    this->pairsToConsider = static_cast<int>(this->searchPairs.size() * this->lsCoveragePercentage);
 }
 
 template <class Decoder, class RNG>
@@ -250,9 +307,7 @@ const Population& BRKGA<Decoder, RNG>::getPopulation(unsigned k) const {
 template <class Decoder, class RNG>
 void BRKGA<Decoder, RNG>::registerConvergence(unsigned int currentGeneration) {
     double currentBestFitness = getBestFitness();
-    if (this->convergenceInfo.empty() || currentBestFitness < this->convergenceInfo.back().second) {
-        this->convergenceInfo.emplace_back(currentGeneration, currentBestFitness);
-    }
+    this->convergenceInfo.emplace_back(currentGeneration, currentBestFitness);
 }
 
 template <class Decoder, class RNG>
@@ -287,7 +342,7 @@ void BRKGA<Decoder, RNG>::reset() {
 }
 
 template <class Decoder, class RNG>
-void BRKGA<Decoder, RNG>::evolve(unsigned generations) {
+void BRKGA<Decoder, RNG>::evolve(bool useVND, unsigned generations) {
 #ifdef RANGECHECK
     if (generations == 0) {
         throw std::range_error("Cannot evolve for 0 generations.");
@@ -296,8 +351,11 @@ void BRKGA<Decoder, RNG>::evolve(unsigned generations) {
 
     for (unsigned i = 0; i < generations; ++i) {
         for (unsigned j = 0; j < K; ++j) {
-            evolution(*current[j], *previous[j]);  // First evolve the population (curr, next)
-            std::swap(current[j], previous[j]);    // Update (prev = curr; curr = prev == next)
+            evolution(*current[j], *previous[j],
+                      useVND);  // First evolve the population (curr, next)
+            std::swap(
+                current[j],
+                previous[j]);  // Update (prev = curr; curr = prev == next)
         }
     }
 }
@@ -311,7 +369,8 @@ void BRKGA<Decoder, RNG>::exchangeElite(unsigned M) {
 #endif
 
     for (unsigned i = 0; i < K; ++i) {
-        // Population i will receive some elite members from each Population j below:
+        // Population i will receive some elite members from each Population j
+        // below:
         unsigned dest = p - 1;  // Last chromosome of i (will be updated below)
         for (unsigned j = 0; j < K; ++j) {
             if (j == i) {
@@ -320,10 +379,13 @@ void BRKGA<Decoder, RNG>::exchangeElite(unsigned M) {
 
             // Copy the M best of Population j into Population i:
             for (unsigned m = 0; m < M; ++m) {
-                // Copy the m-th best of Population j into the 'dest'-th position of Population i:
-                const std::vector<double>& bestOfJ = current[j]->getChromosome(m).chromosome;
+                // Copy the m-th best of Population j into the 'dest'-th
+                // position of Population i:
+                const std::vector<double>& bestOfJ =
+                    current[j]->getChromosome(m).chromosome;
 
-                std::copy(bestOfJ.begin(), bestOfJ.end(), current[i]->getChromosome(dest).chromosome.begin());
+                std::copy(bestOfJ.begin(), bestOfJ.end(),
+                          current[i]->getChromosome(dest).chromosome.begin());
 
                 current[i]->fitness[dest].first = current[j]->fitness[m].first;
 
@@ -358,12 +420,14 @@ inline void BRKGA<Decoder, RNG>::initialize(const unsigned i) {
 }
 
 template <class Decoder, class RNG>
-inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next) {
+inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
+                                           bool useVND) {
     // We now will set every chromosome of 'current', iterating with 'i':
     unsigned i = 0;  // Iterate chromosome by chromosome
     unsigned j = 0;  // Iterate allele by allele
 
-    // 2. The 'pe' best chromosomes are maintained, so we just copy these into 'current':
+    // 2. The 'pe' best chromosomes are maintained, so we just copy these into
+    // 'current':
     while (i < pe) {
         for (j = 0; j < n; ++j) {
             next(i, j) = curr(curr.fitness[i].second, j);
@@ -374,7 +438,8 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next) {
         ++i;
     }
 
-    // 3. We'll mate 'p - pe - pm' pairs; initially, i = pe, so we need to iterate until i < p - pm:
+    // 3. We'll mate 'p - pe - pm' pairs; initially, i = pe, so we need to
+    // iterate until i < p - pm:
     while (i < p - pm) {
         // Select an elite parent:
         const unsigned eliteParent = (refRNG.randInt(pe - 1));
@@ -384,7 +449,8 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next) {
 
         // Mate:
         for (j = 0; j < n; ++j) {
-            const unsigned& sourceParent = ((refRNG.rand() < rhoe) ? eliteParent : noneliteParent);
+            const unsigned& sourceParent =
+                ((refRNG.rand() < rhoe) ? eliteParent : noneliteParent);
 
             next(i, j) = curr(curr.fitness[sourceParent].second, j);
         }
@@ -400,17 +466,22 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next) {
         ++i;
     }
 
-    for(int k = 0 ; k < pe ; k++) {
-        if(!next.population[k].refined) {
-            next.population[k] = this->vnd.VNDSearch(next.population[k]);
-            next.population[k].refined = true;
+    if (useVND) {
+        std::shuffle(this->searchPairs.begin(), this->searchPairs.end(), this->rng_engine);
+        for (int k = 0; k < pe; k++) {
+            if (!next.population[k].refined &&
+                refRNG.rand() < this->lsEliteApplicationPercentage) {
+                next.population[k] = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
+                next.population[k].refined = true;
+            }
         }
-    }
 
-    for(int k = pe ; k < p ; k++) {
-        if(!next.population[k].refined && refRNG.rand() < this->vndProbability) {
-            next.population[k] = this->vnd.VNDSearch(next.population[k]);
-            next.population[k].refined = true;
+        for (int k = pe; k < p; k++) {
+            if (!next.population[k].refined &&
+                refRNG.rand() < this->lsNonEliteAplicationPercentage) {
+                next.population[k] = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
+                next.population[k].refined = true;
+            }
         }
     }
 
@@ -430,27 +501,43 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next) {
 }
 
 template <class Decoder, class RNG>
-unsigned BRKGA<Decoder, RNG>::getN() const { return n; }
+unsigned BRKGA<Decoder, RNG>::getN() const {
+    return n;
+}
 
 template <class Decoder, class RNG>
-unsigned BRKGA<Decoder, RNG>::getP() const { return p; }
+unsigned BRKGA<Decoder, RNG>::getP() const {
+    return p;
+}
 
 template <class Decoder, class RNG>
-unsigned BRKGA<Decoder, RNG>::getPe() const { return pe; }
+unsigned BRKGA<Decoder, RNG>::getPe() const {
+    return pe;
+}
 
 template <class Decoder, class RNG>
-unsigned BRKGA<Decoder, RNG>::getPm() const { return pm; }
+unsigned BRKGA<Decoder, RNG>::getPm() const {
+    return pm;
+}
 
 template <class Decoder, class RNG>
-unsigned BRKGA<Decoder, RNG>::getPo() const { return p - pe - pm; }
+unsigned BRKGA<Decoder, RNG>::getPo() const {
+    return p - pe - pm;
+}
 
 template <class Decoder, class RNG>
-double BRKGA<Decoder, RNG>::getRhoe() const { return rhoe; }
+double BRKGA<Decoder, RNG>::getRhoe() const {
+    return rhoe;
+}
 
 template <class Decoder, class RNG>
-unsigned BRKGA<Decoder, RNG>::getK() const { return K; }
+unsigned BRKGA<Decoder, RNG>::getK() const {
+    return K;
+}
 
 template <class Decoder, class RNG>
-unsigned BRKGA<Decoder, RNG>::getMAX_THREADS() const { return MAX_THREADS; }
+unsigned BRKGA<Decoder, RNG>::getMAX_THREADS() const {
+    return MAX_THREADS;
+}
 
 #endif

@@ -22,8 +22,12 @@ class IOReport {
         long unsigned rngSeed = 0;  // semente do gerador de números aleatórios
         unsigned generation = 0;
         int maxIterations = 1000;
-        double vndProbability = 0.05;
+        bool useVND = true;
         bool irace = false;
+        short timeLimit = 120;
+        double lsCoveragePercentage = 1.0;
+        double lsEliteApplicationPercentage = 1.0;
+        double lsNonEliteAplicationPercentage = 0.05;
         std::string filepath;
 
         BRKGA<SampleDecoder, MTRand>* algorithm;
