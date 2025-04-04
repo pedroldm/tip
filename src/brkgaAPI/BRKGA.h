@@ -277,8 +277,8 @@ BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm,
         previous[i] = new Population(*current[i]);
     }
 
-    for (int i = 0; i < this->refDecoder.slots; i++) {
-        for (int j = i + 1; j < this->refDecoder.slots; j++) {
+    for (int i = 0; i < this->refDecoder.tools; i++) {
+        for (int j = i + 1; j < this->refDecoder.tools; j++) {
             this->searchPairs.emplace_back(i, j);
         }
     }
@@ -485,8 +485,6 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
         }
     }
 
-    next.sortFitness();
-    int ks = 0;
 
 // Time to compute fitness, in parallel:
 #ifdef _OPENMP

@@ -79,8 +79,7 @@ void IOReport::run() {
     this->startTime = std::chrono::high_resolution_clock::now();
     const auto maxDuration = std::chrono::minutes(this->timeLimit);
     do {
-        this->algorithm->evolve(
-            this->useVND);  // evolve the population for one generation
+        this->algorithm->evolve(this->useVND);  // evolve the population for one generation
         this->algorithm->registerConvergence(this->generation);
         if ((++this->generation) % this->X_INTVL == 0) {
             this->algorithm->exchangeElite(
@@ -152,7 +151,7 @@ IOReport::IOReport(int argc, char* argv[]) {
 
     this->rng = new MTRand(this->rngSeed);
     this->decoder = SampleDecoder(this->filepath);
-    this->n = this->decoder.slots;
+    this->n = this->decoder.tools;
     this->vnd = VND(this->decoder, this->maxIterations);
     this->algorithm = new BRKGA<SampleDecoder, MTRand>(
         this->n, this->p, this->pe, this->pm, this->rhoe,

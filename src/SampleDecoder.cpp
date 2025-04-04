@@ -76,8 +76,7 @@ SampleDecoder::SampleDecoder(const std::string& filepath) {
 double SampleDecoder::fitness(const std::vector<int> solution) const {
     std::unordered_map<int, int> toolIndex;
 
-    for (int i = 0; i < this->slots; i++) {
-        if (solution[i] == -1) continue;
+    for (int i = 0; i < this->tools; i++) {
         toolIndex[solution[i]] = i;
     }
 
@@ -87,7 +86,7 @@ double SampleDecoder::fitness(const std::vector<int> solution) const {
         for (int j = i + 1; j < this->tools; j++) {
             if (!this->instance[i][j]) continue;
             int dist = abs(toolIndex[i] - toolIndex[j]);
-            int circularDist = std::min(dist, this->slots - dist);
+            int circularDist = std::min(dist, (this->tools - dist) + (this->slots - this->tools));
             totalCost += this->instance[i][j] * circularDist;
         }
     }
@@ -98,23 +97,22 @@ double SampleDecoder::fitness(const std::vector<int> solution) const {
 Chromosome SampleDecoder::encode(const std::vector<int>& solution, Chromosome& originalChromosome) const {
     std::sort(originalChromosome.chromosome.begin(), originalChromosome.chromosome.end());
     std::unordered_map<int, int> toolMap;
-    Chromosome newChromosome(std::vector<double>(this->slots, -1));
+    Chromosome newChromosome(std::vector<double>(this->tools));
 
-    for(int i = 0 ; i < this->slots; i++) {
-        if (solution[i] != -1)
-            toolMap[solution[i]] = i;
+    for(int i = 0 ; i < this->tools; i++) {
+        toolMap[solution[i]] = i;
     }
 
     for (const auto& [key, value] : toolMap) {
         newChromosome.chromosome[value] = originalChromosome.chromosome[key];
     }
 
-    short j = this->tools;
-    for(int i = 0; i < this->slots; i++) {
-        if(newChromosome.chromosome[i] == -1) {
-            newChromosome.chromosome[i] = originalChromosome.chromosome[j++];
-        }
-    }
+    //short j = this->tools;
+    //for(int i = 0; i < this->slots; i++) {
+    //    if(newChromosome.chromosome[i] == -1) {
+    //        newChromosome.chromosome[i] = originalChromosome.chromosome[j++];
+    //    }
+    //}
 
     return newChromosome;
 }
@@ -125,7 +123,7 @@ double SampleDecoder::decode(const Chromosome& chromosome) const {
     
     std::sort(sortedChromosome.chromosome.begin(), sortedChromosome.chromosome.end());
     
-    std::vector<int> decodedSolution(this->slots, -1);
+    std::vector<int> decodedSolution(this->tools, -1);
 
     for (size_t i = 0; i < chromosome.chromosome.size(); ++i) {
         valueToIndicesMap[chromosome.chromosome[i]].push_back(i);
@@ -147,7 +145,7 @@ std::vector<int> SampleDecoder::outputDecode(const Chromosome& chromosome) {
     
     std::sort(sortedChromosome.chromosome.begin(), sortedChromosome.chromosome.end());
     
-    std::vector<int> decodedSolution(this->slots, -1);
+    std::vector<int> decodedSolution(this->tools);
 
     for (size_t i = 0; i < chromosome.chromosome.size(); ++i) {
         valueToIndicesMap[chromosome.chromosome[i]].push_back(i);
