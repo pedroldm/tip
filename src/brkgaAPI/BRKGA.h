@@ -468,6 +468,9 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
 
     if (useVND) {
         std::shuffle(this->searchPairs.begin(), this->searchPairs.end(), this->rng_engine);
+        #ifdef _OPENMP
+        #pragma omp parallel for num_threads(MAX_THREADS)
+        #endif
         for (int k = 0; k < pe; k++) {
             if (!next.population[k].refined &&
                 refRNG.rand() < this->lsEliteApplicationPercentage) {
@@ -476,6 +479,9 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
             }
         }
 
+        #ifdef _OPENMP
+        #pragma omp parallel for num_threads(MAX_THREADS)
+        #endif
         for (int k = pe; k < p; k++) {
             if (!next.population[k].refined &&
                 refRNG.rand() < this->lsNonEliteAplicationPercentage) {
