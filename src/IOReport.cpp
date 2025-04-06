@@ -14,7 +14,6 @@ void IOReport::bestFitness() {
 void IOReport::printIOReport() {
     json report;
 
-    // BRKGA PARAMETERS
     report["brkgaParameters"] = {
         {"filepath", this->filepath},
         {"chromosomeSize", this->n},
@@ -28,7 +27,14 @@ void IOReport::printIOReport() {
         {"numberOfExchanges", this->X_NUMBER},
         {"maximumGenerations", this->MAX_GENS},
         {"randomNumberGeneratorSeed", this->rngSeed},
-        {"currentGeneration", this->generation}
+        {"currentGeneration", this->generation},
+        {"maxIterations", this->maxIterations},
+        {"useVND", this->useVND},
+        {"irace", this->irace},
+        {"timeLimit", this->timeLimit},
+        {"lsCoveragePercentage", this->lsCoveragePercentage},
+        {"lsEliteApplicationPercentage", this->lsEliteApplicationPercentage},
+        {"lsNonEliteApplicationPercentage", this->lsNonEliteAplicationPercentage}
     };
 
     // INSTANCE
@@ -88,7 +94,6 @@ void IOReport::printIOReport() {
     // Print the JSON report
     std::cout << report.dump(4) << std::endl;  // Pretty-print with 4 spaces indentation
 }
-
 
 void IOReport::run() {
     this->startTime = std::chrono::high_resolution_clock::now();
