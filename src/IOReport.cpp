@@ -34,7 +34,7 @@ void IOReport::printIOReport() {
         {"timeLimit", this->timeLimit},
         {"lsCoveragePercentage", this->lsCoveragePercentage},
         {"lsEliteApplicationPercentage", this->lsEliteApplicationPercentage},
-        {"lsNonEliteApplicationPercentage", this->lsNonEliteAplicationPercentage}
+        {"lsNonEliteApplicationPercentage", this->lsNonEliteApplicationPercentage}
     };
 
     // INSTANCE
@@ -144,8 +144,8 @@ IOReport::IOReport(int argc, char* argv[]) {
         else if (arg.find("--lsEliteApplicationPercentage=") == 0)
             this->lsEliteApplicationPercentage =
                 std::atof(arg.substr(31).c_str());
-        else if (arg.find("--lsNonEliteAplicationPercentage=") == 0)
-            this->lsNonEliteAplicationPercentage =
+        else if (arg.find("--lsNonEliteApplicationPercentage=") == 0)
+            this->lsNonEliteApplicationPercentage =
                 std::atof(arg.substr(33).c_str());
         else if (arg.find("--X_INTVL=") == 0)
             this->X_INTVL = std::atoi(arg.substr(10).c_str());
@@ -176,6 +176,6 @@ IOReport::IOReport(int argc, char* argv[]) {
     this->algorithm = new BRKGA<SampleDecoder, MTRand>(
         this->n, this->p, this->pe, this->pm, this->rhoe,
         this->lsCoveragePercentage, this->lsEliteApplicationPercentage,
-        this->lsNonEliteAplicationPercentage, this->decoder, *this->rng,
+        this->lsNonEliteApplicationPercentage, this->decoder, *this->rng,
         this->vnd, this->K, this->MAXT);
 }

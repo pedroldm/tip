@@ -118,7 +118,7 @@ class BRKGA {
      */
     BRKGA(unsigned n, unsigned p, double pe, double pm, double rhoe,
           double lsCoveragePercentage, double lsEliteApplicationPercentage,
-          double lsNonEliteAplicationPercentage, const Decoder& refDecoder,
+          double lsNonEliteApplicationPercentage, const Decoder& refDecoder,
           RNG& refRNG, VND vnd, unsigned K = 1, unsigned MAX_THREADS = 1);
 
     /**
@@ -191,7 +191,7 @@ class BRKGA {
                         // its elite parent
     double lsCoveragePercentage = 1.0;
     double lsEliteApplicationPercentage = 1.0;
-    double lsNonEliteAplicationPercentage = 0.05;
+    double lsNonEliteApplicationPercentage = 0.05;
     std::vector<std::pair<int, int>> searchPairs;
     int pairsToConsider;    // number of pairs to consider in the local search
     std::mt19937 rng_engine;
@@ -219,7 +219,7 @@ template <class Decoder, class RNG>
 BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm,
                            double _rhoe, double lsCoveragePercentage,
                            double lsEliteApplicationPercentage,
-                           double lsNonEliteAplicationPercentage,
+                           double lsNonEliteApplicationPercentage,
                            const Decoder& decoder, RNG& rng, VND vnd,
                            unsigned _K, unsigned MAX)
     : n(_n),
@@ -229,7 +229,7 @@ BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm,
       rhoe(_rhoe),
       lsCoveragePercentage(lsCoveragePercentage),
       lsEliteApplicationPercentage(lsEliteApplicationPercentage),
-      lsNonEliteAplicationPercentage(lsNonEliteAplicationPercentage),
+      lsNonEliteApplicationPercentage(lsNonEliteApplicationPercentage),
       refRNG(rng),
       vnd(vnd),
       refDecoder(decoder),
@@ -309,7 +309,9 @@ const Population& BRKGA<Decoder, RNG>::getPopulation(unsigned k) const {
 template <class Decoder, class RNG>
 void BRKGA<Decoder, RNG>::registerConvergence(unsigned int currentGeneration) {
     double currentBestFitness = getBestFitness();
-    this->convergenceInfo.emplace_back(currentGeneration, currentBestFitness);
+    if (convergenceInfo.empty() || currentBestFitness < convergenceInfo.back().second) {
+        convergenceInfo.emplace_back(currentGeneration, currentBestFitness);
+    }
 }
 
 template <class Decoder, class RNG>
@@ -492,7 +494,7 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
         #endif
         for (int k = pe; k < p; k++) {
             if (!next.population[k].refined &&
-                refRNG.rand() < this->lsNonEliteAplicationPercentage) {
+                refRNG.rand() < this->lsNonEliteApplicationPercentage) {
                 Chromosome refinedChromosome;
                 std::vector<int> improvements;
                 std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
