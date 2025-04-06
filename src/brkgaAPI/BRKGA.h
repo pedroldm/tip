@@ -95,6 +95,7 @@ template <class Decoder, class RNG>
 class BRKGA {
    public:
     std::vector<std::pair<unsigned, double>> convergenceInfo;
+    std::vector<int> lsImprovements;
     VND vnd;
 
     /*
@@ -236,6 +237,7 @@ BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm,
       MAX_THREADS(MAX),
       previous(K, 0),
       current(K, 0),
+      lsImprovements(3, 0),
       rng_engine(std::random_device{}()) {
     // Error check:
     using std::range_error;
@@ -474,8 +476,14 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
         for (int k = 0; k < pe; k++) {
             if (!next.population[k].refined &&
                 refRNG.rand() < this->lsEliteApplicationPercentage) {
-                next.population[k] = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
+                Chromosome refinedChromosome;
+                std::vector<int> improvements;
+                std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
+                next.population[k] = refinedChromosome;
                 next.population[k].refined = true;
+                this->lsImprovements[0] += improvements[0];
+                this->lsImprovements[1] += improvements[1];
+                this->lsImprovements[2] += improvements[2];
             }
         }
 
@@ -485,8 +493,14 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
         for (int k = pe; k < p; k++) {
             if (!next.population[k].refined &&
                 refRNG.rand() < this->lsNonEliteAplicationPercentage) {
-                next.population[k] = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
+                Chromosome refinedChromosome;
+                std::vector<int> improvements;
+                std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
+                next.population[k] = refinedChromosome;
                 next.population[k].refined = true;
+                this->lsImprovements[0] += improvements[0];
+                this->lsImprovements[1] += improvements[1];
+                this->lsImprovements[2] += improvements[2];
             }
         }
     }

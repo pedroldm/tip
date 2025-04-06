@@ -15,65 +15,80 @@ void IOReport::printIOReport() {
     json report;
 
     // BRKGA PARAMETERS
-    report["BRKGA_PARAMETERS"] = {
-        {"Filepath", this->filepath},
-        {"Chromosome_size", this->n},
-        {"Population_size", this->p},
-        {"Elite_fraction", this->pe},
-        {"Mutation_fraction", this->pm},
-        {"Inheritance_probability", this->rhoe},
-        {"Number_of_populations", this->K},
-        {"Number_of_threads", this->MAXT},
-        {"Exchange_interval", this->X_INTVL},
-        {"Number_of_exchanges", this->X_NUMBER},
-        {"Maximum_generations", this->MAX_GENS},
-        {"Random_number_generator_seed", this->rngSeed},
-        {"Current_generation", this->generation}};
+    report["brkgaParameters"] = {
+        {"filepath", this->filepath},
+        {"chromosomeSize", this->n},
+        {"populationSize", this->p},
+        {"eliteFraction", this->pe},
+        {"mutationFraction", this->pm},
+        {"inheritanceProbability", this->rhoe},
+        {"numberOfPopulations", this->K},
+        {"numberOfThreads", this->MAXT},
+        {"exchangeInterval", this->X_INTVL},
+        {"numberOfExchanges", this->X_NUMBER},
+        {"maximumGenerations", this->MAX_GENS},
+        {"randomNumberGeneratorSeed", this->rngSeed},
+        {"currentGeneration", this->generation}
+    };
 
     // INSTANCE
-    report["INSTANCE"] = {{"Tools", this->decoder.tools},
-                          {"Slots", this->decoder.slots},
-                          {"SOA_Cost", this->decoder.SOACost},
-                          {"SOA_Solution", this->decoder.SOASolution},
-                          {"Instance", this->decoder.instance}};
+    report["instance"] = {
+        {"tools", this->decoder.tools},
+        {"slots", this->decoder.slots},
+        {"soaCost", this->decoder.SOACost},
+        {"soaSolution", this->decoder.SOASolution},
+        {"instance", this->decoder.instance}
+    };
 
     // TOP INDIVIDUALS
     json topIndividuals;
-    const unsigned bound =
-        std::min(p, unsigned(10));  // Limit to top 10 individuals
+    const unsigned bound = std::min(p, unsigned(10));
     for (unsigned i = 0; i < K; ++i) {
         json population;
         for (unsigned j = 0; j < bound; ++j) {
-            population.push_back(
-                {{"rank", j},
-                 {"fitness", this->algorithm->getPopulation(i).getFitness(j)}});
+            population.push_back({
+                {"rank", j},
+                {"fitness", this->algorithm->getPopulation(i).getFitness(j)}
+            });
         }
-        topIndividuals["Population_" + std::to_string(i)] = population;
+        topIndividuals["population"] = population;
     }
-    report["TOP_INDIVIDUALS"] = topIndividuals;
+    report["topIndividuals"] = topIndividuals;
 
     // CONVERGENCE REPORT
     json convergenceReport;
     for (const auto& info : this->algorithm->convergenceInfo) {
-        convergenceReport.push_back(
-            {{"generation", info.first}, {"best_fitness", info.second}});
+        convergenceReport.push_back({
+            {"generation", info.first},
+            {"bestFitness", info.second}
+        });
     }
-    report["CONVERGENCE_REPORT"] = convergenceReport;
+    report["convergenceReport"] = convergenceReport;
+
+    // LOCAL SEARCH REPORT
+    report["localSearchReport"] = {
+        {"swap", this->algorithm->lsImprovements[0]},
+        {"twoOpt", this->algorithm->lsImprovements[1]},
+        {"reinsertion", this->algorithm->lsImprovements[2]}
+    };
 
     // EXECUTION TIME REPORT
     std::chrono::duration<double> duration = this->finishTime - this->startTime;
-    report["EXECUTION_TIME_REPORT"] = {{"duration_seconds", duration.count()}};
+    report["executionTimeReport"] = {
+        {"durationSeconds", duration.count()}
+    };
 
     // RESULT
-    std::vector<int> bestSolution =
-        this->decoder.outputDecode(this->algorithm->getBestChromosome());
-    report["RESULT"] = {{"Best_Solution", bestSolution},
-                        {"Min_f(x)", this->algorithm->getBestFitness()}};
+    std::vector<int> bestSolution = this->decoder.outputDecode(this->algorithm->getBestChromosome());
+    report["result"] = {
+        {"bestSolution", bestSolution},
+        {"minFx", this->algorithm->getBestFitness()}
+    };
 
     // Print the JSON report
-    std::cout << report.dump(4)
-              << std::endl;  // Pretty-print with 4 spaces indentation
+    std::cout << report.dump(4) << std::endl;  // Pretty-print with 4 spaces indentation
 }
+
 
 void IOReport::run() {
     this->startTime = std::chrono::high_resolution_clock::now();

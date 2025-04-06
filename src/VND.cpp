@@ -7,9 +7,10 @@ VND::VND() {}
 
 VND::~VND() {}
 
-Chromosome VND::VNDSearch(Chromosome& chromosome, std::vector<std::pair<int, int>>& searchPairs, int pairsToConsider) {
+std::tuple<Chromosome, std::vector<int>> VND::VNDSearch(Chromosome& chromosome, std::vector<std::pair<int, int>>& searchPairs, int pairsToConsider) {
     std::vector<int> solution = this->sampleDecoder.outputDecode(chromosome);
     double currentBest = this->sampleDecoder.fitness(solution);
+    std::vector<int> improvements(3, 0);
 
     int iteration = 0;
     int currIteration = 0;
@@ -17,19 +18,36 @@ Chromosome VND::VNDSearch(Chromosome& chromosome, std::vector<std::pair<int, int
         currIteration += 1;
         switch(iteration) {
             case 0:
-                this->swapLocalSearch(solution, currentBest, searchPairs, pairsToConsider) ? iteration = 0 : iteration += 1;
+                if (this->swapLocalSearch(solution, currentBest, searchPairs, pairsToConsider)) {
+                    iteration = 0;
+                    improvements[0]++;
+                } else {
+                    iteration += 1;
+                }
                 break;
             case 1:
-                this->TwoOPTLocalSearch(solution, currentBest, searchPairs, pairsToConsider) ? iteration = 0 : iteration += 1;
+                if (this->TwoOPTLocalSearch(solution, currentBest, searchPairs, pairsToConsider)) {
+                    iteration = 0;
+                    improvements[1]++;
+                } else {
+                    iteration += 1;
+                }
                 break;
             case 2:
-                this->reinsertionLocalSearch(solution, currentBest, searchPairs, pairsToConsider) ? iteration = 0 : iteration += 1;
+                if (this->reinsertionLocalSearch(solution, currentBest, searchPairs, pairsToConsider)) {
+                    iteration = 0;
+                    improvements[2]++;
+                } else {
+                    iteration += 1;
+                }
                 break;
         }
     }
 
-    return this->sampleDecoder.encode(solution, chromosome);
+    Chromosome newChromosome = this->sampleDecoder.encode(solution, chromosome);
+    return std::make_tuple(newChromosome, improvements);
 }
+
 
 bool VND::swapLocalSearch(std::vector<int>& solution, double& currentBest, std::vector<std::pair<int, int>> searchPairs, int pairsToConsider) {
     for (int k = 0; k < pairsToConsider; k++) {
