@@ -21,7 +21,7 @@ class VND {
     ~VND();
 
     std::tuple<Chromosome, std::vector<int>> VNDSearch(Chromosome& chromosome,
-                         std::vector<std::pair<int, int>>& searchPairs, std::vector<std::pair<int, int>>& reverseSearchPairs
+                         std::vector<std::pair<int, int>>& searchPairs, std::vector<std::pair<int, int>>& reverseSearchPairs,
                          int pairsToConsider);
     bool TwoOPTLocalSearch(std::vector<int>& solution, double& currentBest,
                            std::vector<std::pair<int, int>> searchPairs,
@@ -30,7 +30,7 @@ class VND {
                          std::vector<std::pair<int, int>> searchPairs,
                          int pairsToConsider);
     bool reinsertionLocalSearch(std::vector<int>& solution, double& currentBest,
-                                std::vector<std::pair<int, int>> searchPairs, std::vector<std::pair<int, int>>& reverseSearchPairs
+                                std::vector<std::pair<int, int>> searchPairs, std::vector<std::pair<int, int>>& reverseSearchPairs,
                                 int pairsToConsider);
 };
 
