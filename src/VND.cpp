@@ -7,7 +7,7 @@ VND::VND() {}
 
 VND::~VND() {}
 
-std::tuple<Chromosome, std::vector<int>> VND::VNDSearch(Chromosome& chromosome, std::vector<std::pair<int, int>>& searchPairs, int pairsToConsider) {
+std::tuple<Chromosome, std::vector<int>> VND::VNDSearch(Chromosome& chromosome, std::vector<std::pair<int, int>>& searchPairs, std::vector<std::pair<int, int>>& reverseSearchPairs, int pairsToConsider) {
     std::vector<int> solution = this->sampleDecoder.outputDecode(chromosome);
     double currentBest = this->sampleDecoder.fitness(solution);
     std::vector<int> improvements(3, 0);
@@ -34,7 +34,7 @@ std::tuple<Chromosome, std::vector<int>> VND::VNDSearch(Chromosome& chromosome, 
                 }
                 break;
             case 2:
-                if (this->reinsertionLocalSearch(solution, currentBest, searchPairs, pairsToConsider)) {
+                if (this->reinsertionLocalSearch(solution, currentBest, searchPairs, reverseSearchPairs, pairsToConsider)) {
                     iteration = 0;
                     improvements[2]++;
                 } else {
@@ -81,10 +81,27 @@ bool VND::TwoOPTLocalSearch(std::vector<int>& solution, double& currentBest, std
     return false;
 }
 
-bool VND::reinsertionLocalSearch(std::vector<int>& solution, double& currentBest, std::vector<std::pair<int, int>> searchPairs, int pairsToConsider) {
+bool VND::reinsertionLocalSearch(std::vector<int>& solution, double& currentBest, std::vector<std::pair<int, int>> searchPairs, std::vector<std::pair<int, int>>& reverseSearchPairs, int pairsToConsider) {
     for (int k = 0; k < pairsToConsider; k++) {
         int i = searchPairs[k].first;
         int j = searchPairs[k].second;
+        if (i == j) continue;
+        int tool = solution[i];
+        solution.erase(solution.begin() + i);
+        solution.insert(solution.begin() + j, tool);
+        double newFitness = this->sampleDecoder.fitness(solution);
+        if (newFitness < currentBest) {
+            currentBest = newFitness;
+            return true;
+        } else {
+            solution.erase(solution.begin() + j);
+            solution.insert(solution.begin() + i, tool);
+        }
+    }
+
+    for (int k = 0; k < pairsToConsider; k++) {
+        int i = reverseSearchPairs[k].first;
+        int j = reverseSearchPairs[k].second;
         if (i == j) continue;
         int tool = solution[i];
         solution.erase(solution.begin() + i);

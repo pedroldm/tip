@@ -193,6 +193,7 @@ class BRKGA {
     double lsEliteApplicationPercentage = 1.0;
     double lsNonEliteApplicationPercentage = 0.05;
     std::vector<std::pair<int, int>> searchPairs;
+    std::vector<std::pair<int, int>> reverseSearchPairs;
     int pairsToConsider;    // number of pairs to consider in the local search
     std::mt19937 rng_engine;
 
@@ -282,6 +283,7 @@ BRKGA<Decoder, RNG>::BRKGA(unsigned _n, unsigned _p, double _pe, double _pm,
     for (int i = 0; i < this->refDecoder.tools; i++) {
         for (int j = i + 1; j < this->refDecoder.tools; j++) {
             this->searchPairs.emplace_back(i, j);
+            this->reverseSearchPairs.emplace_back(j, i);
         }
     }
 
@@ -472,6 +474,7 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
 
     if (useVND) {
         std::shuffle(this->searchPairs.begin(), this->searchPairs.end(), this->rng_engine);
+        std::shuffle(this->reverseSearchPairs.begin(), this->reverseSearchPairs.end(), this->rng_engine);
         #ifdef _OPENMP
         #pragma omp parallel for num_threads(MAX_THREADS)
         #endif
@@ -480,7 +483,7 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
                 refRNG.rand() < this->lsEliteApplicationPercentage) {
                 Chromosome refinedChromosome;
                 std::vector<int> improvements;
-                std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
+                std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, reverseSearchPairs, pairsToConsider);
                 next.population[k] = refinedChromosome;
                 next.population[k].refined = true;
                 this->lsImprovements[0] += improvements[0];
@@ -497,7 +500,7 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
                 refRNG.rand() < this->lsNonEliteApplicationPercentage) {
                 Chromosome refinedChromosome;
                 std::vector<int> improvements;
-                std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, pairsToConsider);
+                std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, reverseSearchPairs, pairsToConsider);
                 next.population[k] = refinedChromosome;
                 next.population[k].refined = true;
                 this->lsImprovements[0] += improvements[0];
