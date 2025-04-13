@@ -1,0 +1,3 @@
+PROBLEM_FILE = /home/pedro/Pessoal/MSc/tip/src/LKH/IO/s-19_t.tsp
+OUTPUT_TOUR_FILE = /home/pedro/Pessoal/MSc/tip/src/LKH/IO/s-19_t.tour
+RUNS = 1

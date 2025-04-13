@@ -1,0 +1,58 @@
+NAME : y-50_t.-456.tour
+COMMENT : Length = -456
+COMMENT : Found by LKH [Keld Helsgaun] Sun Apr 13 17:05:01 2025
+TYPE : TOUR
+DIMENSION : 50
+TOUR_SECTION
+1
+19
+38
+44
+10
+9
+40
+17
+21
+16
+5
+7
+48
+6
+42
+20
+2
+43
+28
+46
+18
+15
+3
+29
+4
+41
+22
+49
+39
+14
+11
+31
+25
+13
+45
+34
+27
+33
+50
+12
+32
+35
+30
+8
+24
+26
+36
+37
+23
+47
+-1
+EOF

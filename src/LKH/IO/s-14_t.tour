@@ -1,0 +1,22 @@
+NAME : s-14_t.-331.tour
+COMMENT : Length = -331
+COMMENT : Found by LKH [Keld Helsgaun] Sun Apr 13 17:05:02 2025
+TYPE : TOUR
+DIMENSION : 14
+TOUR_SECTION
+1
+3
+8
+10
+7
+11
+13
+2
+9
+5
+6
+12
+14
+4
+-1
+EOF

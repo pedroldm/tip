@@ -1,0 +1,21 @@
+NAME : y-13_t_2.-287.tour
+COMMENT : Length = -287
+COMMENT : Found by LKH [Keld Helsgaun] Sun Apr 13 17:05:01 2025
+TYPE : TOUR
+DIMENSION : 13
+TOUR_SECTION
+1
+2
+10
+6
+7
+5
+11
+8
+4
+3
+9
+12
+13
+-1
+EOF

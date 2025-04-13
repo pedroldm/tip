@@ -1,0 +1,18 @@
+NAME : y-10_t_2.-305.tour
+COMMENT : Length = -305
+COMMENT : Found by LKH [Keld Helsgaun] Sun Apr 13 17:05:01 2025
+TYPE : TOUR
+DIMENSION : 10
+TOUR_SECTION
+1
+2
+10
+4
+7
+5
+8
+3
+9
+6
+-1
+EOF

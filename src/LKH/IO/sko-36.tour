@@ -1,0 +1,44 @@
+NAME : sko-36.-1229.tour
+COMMENT : Length = -1229
+COMMENT : Found by LKH [Keld Helsgaun] Sun Apr 13 17:05:01 2025
+TYPE : TOUR
+DIMENSION : 36
+TOUR_SECTION
+1
+10
+7
+15
+16
+36
+35
+3
+2
+9
+17
+18
+8
+4
+13
+12
+11
+6
+5
+22
+21
+19
+28
+30
+29
+31
+34
+33
+32
+20
+23
+26
+25
+24
+27
+14
+-1
+EOF

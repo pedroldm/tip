@@ -1,0 +1,15 @@
+NAME : y-7_t.-281.tour
+COMMENT : Length = -281
+COMMENT : Found by LKH [Keld Helsgaun] Sun Apr 13 17:05:01 2025
+TYPE : TOUR
+DIMENSION : 7
+TOUR_SECTION
+1
+4
+5
+6
+2
+3
+7
+-1
+EOF
