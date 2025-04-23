@@ -26,17 +26,17 @@ std::tuple<Chromosome, std::vector<int>> VND::VNDSearch(Chromosome& chromosome, 
                 }
                 break;
             case 1:
-                if (this->TwoOPTLocalSearch(solution, currentBest, searchPairs, pairsToConsider)) {
+                if (this->reinsertionLocalSearch(solution, currentBest, searchPairs, reverseSearchPairs, pairsToConsider)) {
                     iteration = 0;
-                    improvements[1]++;
+                    improvements[2]++;
                 } else {
                     iteration += 1;
                 }
                 break;
             case 2:
-                if (this->reinsertionLocalSearch(solution, currentBest, searchPairs, reverseSearchPairs, pairsToConsider)) {
+                if (this->TwoOPTLocalSearch(solution, currentBest, searchPairs, pairsToConsider)) {
                     iteration = 0;
-                    improvements[2]++;
+                    improvements[1]++;
                 } else {
                     iteration += 1;
                 }
