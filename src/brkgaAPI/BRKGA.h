@@ -166,18 +166,19 @@ class BRKGA {
     unsigned getN() const;
     unsigned getP() const;
     unsigned getPe() const;
-    unsigned getPm() const;
+    unsigned getPm();
     unsigned getPo() const;
     double getRhoe() const;
     unsigned getK() const;
     unsigned getMAX_THREADS() const;
+    void setPm(unsigned pm);
 
     /**
      * Registers the current best fitness and generation number in the
      * convergence information.
      * @param currentGeneration The current generation number.
      */
-    void registerConvergence(unsigned int currentGeneration);
+    bool registerConvergence(unsigned int currentGeneration);
 
    private:
     // I don't see any reason to pimpl the internal methods and data, so here
@@ -185,8 +186,8 @@ class BRKGA {
     const unsigned n;   // number of genes in the chromosome
     const unsigned p;   // number of elements in the population
     const unsigned pe;  // number of elite items in the population
-    const unsigned pm;  // number of mutants introduced at each generation into
-                        // the population
+    unsigned pm;  // number of mutants introduced at each generation into
+                  // the population
     const double rhoe;  // probability that an offspring inherits the allele of
                         // its elite parent
     double lsCoveragePercentage = 1.0;
@@ -309,11 +310,13 @@ const Population& BRKGA<Decoder, RNG>::getPopulation(unsigned k) const {
 }
 
 template <class Decoder, class RNG>
-void BRKGA<Decoder, RNG>::registerConvergence(unsigned int currentGeneration) {
+bool BRKGA<Decoder, RNG>::registerConvergence(unsigned int currentGeneration) {
     double currentBestFitness = getBestFitness();
     if (convergenceInfo.empty() || currentBestFitness < convergenceInfo.back().second) {
         convergenceInfo.emplace_back(currentGeneration, currentBestFitness);
+        return true;
     }
+    return false;
 }
 
 template <class Decoder, class RNG>
@@ -539,7 +542,7 @@ unsigned BRKGA<Decoder, RNG>::getPe() const {
 }
 
 template <class Decoder, class RNG>
-unsigned BRKGA<Decoder, RNG>::getPm() const {
+unsigned BRKGA<Decoder, RNG>::getPm() {
     return pm;
 }
 
@@ -561,6 +564,11 @@ unsigned BRKGA<Decoder, RNG>::getK() const {
 template <class Decoder, class RNG>
 unsigned BRKGA<Decoder, RNG>::getMAX_THREADS() const {
     return MAX_THREADS;
+}
+
+template <class Decoder, class RNG>
+void BRKGA<Decoder, RNG>::setPm(unsigned pm) {
+    this->pm = pm;
 }
 
 #endif

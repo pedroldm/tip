@@ -19,7 +19,7 @@ void IOReport::printIOReport() {
         {"chromosomeSize", this->n},
         {"populationSize", this->p},
         {"eliteFraction", this->pe},
-        {"mutationFraction", this->pm},
+        {"mutationFraction", this->originalPm},
         {"inheritanceProbability", this->rhoe},
         {"numberOfPopulations", this->K},
         {"numberOfThreads", this->MAXT},
@@ -34,7 +34,11 @@ void IOReport::printIOReport() {
         {"timeLimit", this->timeLimit},
         {"lsCoveragePercentage", this->lsCoveragePercentage},
         {"lsEliteApplicationPercentage", this->lsEliteApplicationPercentage},
-        {"lsNonEliteApplicationPercentage", this->lsNonEliteApplicationPercentage}
+        {"lsNonEliteApplicationPercentage", this->lsNonEliteApplicationPercentage},
+        {"lastPm", this->algorithm->getPm()},
+        {"pmIncreaseFactor", this->PM_INCREASE_FACTOR},
+        {"maxGensWithoutImprovement", this->MAX_GENS_WITHOUT_IMPROVEMENT},
+        {"gensWithoutImprovement", this->GENS_WITHOUT_IMPROVEMENT}
     };
 
     // INSTANCE
@@ -99,11 +103,22 @@ void IOReport::run() {
     this->startTime = std::chrono::high_resolution_clock::now();
     const auto maxDuration = std::chrono::minutes(this->timeLimit);
     do {
-        this->algorithm->evolve(this->useVND);  // evolve the population for one generation
-        this->algorithm->registerConvergence(this->generation);
+        this->algorithm->evolve(this->useVND);
+        if(this->algorithm->registerConvergence(this->generation)) {
+            this->GENS_WITHOUT_IMPROVEMENT = 0;
+            this->pm = this->originalPm;
+            this->algorithm->setPm((unsigned)this->p * this->originalPm);
+        } else {
+            this->GENS_WITHOUT_IMPROVEMENT++;
+            this->pm = this->pm * (1 + this->PM_INCREASE_FACTOR);
+            this->algorithm->setPm((unsigned)std::min(this->p * this->pm, static_cast<double>(this->p) / 2));
+            if (this->GENS_WITHOUT_IMPROVEMENT >= this->MAX_GENS_WITHOUT_IMPROVEMENT) {
+                break;
+            }
+        }
         if ((++this->generation) % this->X_INTVL == 0) {
             this->algorithm->exchangeElite(
-                this->X_NUMBER);  // exchange top individuals
+                this->X_NUMBER);
         }
         if (std::chrono::high_resolution_clock::now() - this->startTime >
             maxDuration)
@@ -127,8 +142,10 @@ IOReport::IOReport(int argc, char* argv[]) {
             this->p = std::atoi(arg.substr(4).c_str());
         else if (arg.find("--pe=") == 0)
             this->pe = std::atof(arg.substr(5).c_str());
-        else if (arg.find("--pm=") == 0)
+        else if (arg.find("--pm=") == 0) {
             this->pm = std::atof(arg.substr(5).c_str());
+            this->originalPm = this->pm;
+        }
         else if (arg.find("--rhoe=") == 0)
             this->rhoe = std::atof(arg.substr(7).c_str());
         else if (arg.find("--K=") == 0)
@@ -139,6 +156,8 @@ IOReport::IOReport(int argc, char* argv[]) {
             this->maxIterations = std::atoi(arg.substr(16).c_str());
         else if (arg.find("--MAXT=") == 0)
             this->MAXT = std::atoi(arg.substr(7).c_str());
+        else if (arg.find("--PM_INCREASE_FACTOR=") == 0)
+            this->PM_INCREASE_FACTOR = std::atof(arg.substr(21).c_str());
         else if (arg.find("--lsCoveragePercentage=") == 0)
             this->lsCoveragePercentage = std::atof(arg.substr(23).c_str());
         else if (arg.find("--lsEliteApplicationPercentage=") == 0)
@@ -153,6 +172,8 @@ IOReport::IOReport(int argc, char* argv[]) {
             this->X_NUMBER = std::atoi(arg.substr(11).c_str());
         else if (arg.find("--MAX_GENS=") == 0)
             this->MAX_GENS = std::atoi(arg.substr(11).c_str());
+        else if (arg.find("--MAX_GENS_WITHOUT_IMPROVEMENT=") == 0)
+            this->MAX_GENS_WITHOUT_IMPROVEMENT = std::atoi(arg.substr(31).c_str());
         else if (arg.find("--rngSeed=") == 0)
             this->rngSeed = std::strtoul(arg.substr(10).c_str(), nullptr, 10);
         else if (arg.find("--irace=") == 0) {
