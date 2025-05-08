@@ -1,0 +1,3959 @@
+{
+    "o-5_t_2.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 5,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-5_t_2.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 946875161,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 150.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.014903509
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14
+                    ],
+                    [
+                        2,
+                        0,
+                        16,
+                        6,
+                        8
+                    ],
+                    [
+                        10,
+                        16,
+                        0,
+                        2,
+                        10
+                    ],
+                    [
+                        10,
+                        6,
+                        2,
+                        0,
+                        14
+                    ],
+                    [
+                        14,
+                        8,
+                        10,
+                        14,
+                        0
+                    ]
+                ],
+                "slots": 10,
+                "soaCost": 150,
+                "soaSolution": [
+                    4,
+                    0,
+                    3,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    1,
+                    2
+                ],
+                "tools": 5
+            },
+            "localSearchReport": {
+                "reinsertion": 266,
+                "swap": 1572,
+                "twoOpt": 33
+            },
+            "result": {
+                "bestSolution": [
+                    3,
+                    0,
+                    4,
+                    2,
+                    1
+                ],
+                "minFx": 150.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 150.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 150.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-6_t.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 6,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-6_t.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 736319080,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 292.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.020553731
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16
+                    ],
+                    [
+                        2,
+                        0,
+                        6,
+                        8,
+                        2,
+                        10
+                    ],
+                    [
+                        10,
+                        6,
+                        0,
+                        14,
+                        16,
+                        2
+                    ],
+                    [
+                        10,
+                        8,
+                        14,
+                        0,
+                        12,
+                        8
+                    ],
+                    [
+                        14,
+                        2,
+                        16,
+                        12,
+                        0,
+                        20
+                    ],
+                    [
+                        16,
+                        10,
+                        2,
+                        8,
+                        20,
+                        0
+                    ]
+                ],
+                "slots": 10,
+                "soaCost": 292,
+                "soaSolution": [
+                    1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    0,
+                    5,
+                    4,
+                    3,
+                    2
+                ],
+                "tools": 6
+            },
+            "localSearchReport": {
+                "reinsertion": 223,
+                "swap": 2087,
+                "twoOpt": 11
+            },
+            "result": {
+                "bestSolution": [
+                    1,
+                    3,
+                    2,
+                    4,
+                    5,
+                    0
+                ],
+                "minFx": 292.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 292.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 292.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-10_t_6.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 10,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-10_t_6.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 862208720,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 1402.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.122319672
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10
+                    ],
+                    [
+                        2,
+                        0,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8,
+                        20,
+                        2,
+                        6
+                    ],
+                    [
+                        10,
+                        14,
+                        0,
+                        16,
+                        14,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20
+                    ],
+                    [
+                        10,
+                        16,
+                        16,
+                        0,
+                        20,
+                        14,
+                        16,
+                        4,
+                        6,
+                        14
+                    ],
+                    [
+                        14,
+                        2,
+                        14,
+                        20,
+                        0,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6
+                    ],
+                    [
+                        16,
+                        12,
+                        14,
+                        14,
+                        6,
+                        0,
+                        4,
+                        10,
+                        4,
+                        4
+                    ],
+                    [
+                        6,
+                        8,
+                        12,
+                        16,
+                        6,
+                        4,
+                        0,
+                        16,
+                        20,
+                        14
+                    ],
+                    [
+                        8,
+                        20,
+                        20,
+                        4,
+                        10,
+                        10,
+                        16,
+                        0,
+                        10,
+                        10
+                    ],
+                    [
+                        2,
+                        2,
+                        4,
+                        6,
+                        14,
+                        4,
+                        20,
+                        10,
+                        0,
+                        2
+                    ],
+                    [
+                        10,
+                        6,
+                        20,
+                        14,
+                        6,
+                        4,
+                        14,
+                        10,
+                        2,
+                        0
+                    ]
+                ],
+                "slots": 30,
+                "soaCost": 1402,
+                "soaSolution": [
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    0,
+                    5,
+                    4,
+                    3,
+                    2,
+                    9,
+                    1,
+                    7,
+                    6,
+                    8,
+                    -1,
+                    -1
+                ],
+                "tools": 10
+            },
+            "localSearchReport": {
+                "reinsertion": 774,
+                "swap": 7481,
+                "twoOpt": 89
+            },
+            "result": {
+                "bestSolution": [
+                    8,
+                    6,
+                    7,
+                    1,
+                    9,
+                    2,
+                    3,
+                    4,
+                    5,
+                    0
+                ],
+                "minFx": 1402.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 1402.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-5_t.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 5,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-5_t.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 469416506,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 124.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.013644134
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14
+                    ],
+                    [
+                        2,
+                        0,
+                        16,
+                        6,
+                        8
+                    ],
+                    [
+                        10,
+                        16,
+                        0,
+                        2,
+                        10
+                    ],
+                    [
+                        10,
+                        6,
+                        2,
+                        0,
+                        14
+                    ],
+                    [
+                        14,
+                        8,
+                        10,
+                        14,
+                        0
+                    ]
+                ],
+                "slots": 5,
+                "soaCost": 124,
+                "soaSolution": [
+                    0,
+                    2,
+                    1,
+                    3,
+                    4
+                ],
+                "tools": 5
+            },
+            "localSearchReport": {
+                "reinsertion": 35,
+                "swap": 1102,
+                "twoOpt": 6
+            },
+            "result": {
+                "bestSolution": [
+                    1,
+                    2,
+                    0,
+                    4,
+                    3
+                ],
+                "minFx": 124.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 124.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 124.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-7_t.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 7,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-7_t.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 182463013,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 468.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.032048277
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6
+                    ],
+                    [
+                        2,
+                        0,
+                        8,
+                        2,
+                        10,
+                        14,
+                        16
+                    ],
+                    [
+                        10,
+                        8,
+                        0,
+                        2,
+                        12,
+                        8,
+                        20
+                    ],
+                    [
+                        10,
+                        2,
+                        2,
+                        0,
+                        2,
+                        6,
+                        16
+                    ],
+                    [
+                        14,
+                        10,
+                        12,
+                        2,
+                        0,
+                        14,
+                        14
+                    ],
+                    [
+                        16,
+                        14,
+                        8,
+                        6,
+                        14,
+                        0,
+                        12
+                    ],
+                    [
+                        6,
+                        16,
+                        20,
+                        16,
+                        14,
+                        12,
+                        0
+                    ]
+                ],
+                "slots": 10,
+                "soaCost": 468,
+                "soaSolution": [
+                    3,
+                    0,
+                    5,
+                    4,
+                    6,
+                    2,
+                    1,
+                    -1,
+                    -1,
+                    -1
+                ],
+                "tools": 7
+            },
+            "localSearchReport": {
+                "reinsertion": 366,
+                "swap": 2955,
+                "twoOpt": 27
+            },
+            "result": {
+                "bestSolution": [
+                    3,
+                    0,
+                    5,
+                    4,
+                    6,
+                    2,
+                    1
+                ],
+                "minFx": 468.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 468.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 468.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-10_t_5.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 10,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-10_t_5.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 548451791,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 1402.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.119808342
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10
+                    ],
+                    [
+                        2,
+                        0,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8,
+                        20,
+                        2,
+                        6
+                    ],
+                    [
+                        10,
+                        14,
+                        0,
+                        16,
+                        14,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20
+                    ],
+                    [
+                        10,
+                        16,
+                        16,
+                        0,
+                        20,
+                        14,
+                        16,
+                        4,
+                        6,
+                        14
+                    ],
+                    [
+                        14,
+                        2,
+                        14,
+                        20,
+                        0,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6
+                    ],
+                    [
+                        16,
+                        12,
+                        14,
+                        14,
+                        6,
+                        0,
+                        4,
+                        10,
+                        4,
+                        4
+                    ],
+                    [
+                        6,
+                        8,
+                        12,
+                        16,
+                        6,
+                        4,
+                        0,
+                        16,
+                        20,
+                        14
+                    ],
+                    [
+                        8,
+                        20,
+                        20,
+                        4,
+                        10,
+                        10,
+                        16,
+                        0,
+                        10,
+                        10
+                    ],
+                    [
+                        2,
+                        2,
+                        4,
+                        6,
+                        14,
+                        4,
+                        20,
+                        10,
+                        0,
+                        2
+                    ],
+                    [
+                        10,
+                        6,
+                        20,
+                        14,
+                        6,
+                        4,
+                        14,
+                        10,
+                        2,
+                        0
+                    ]
+                ],
+                "slots": 25,
+                "soaCost": 1402,
+                "soaSolution": [
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    0,
+                    5,
+                    4,
+                    3,
+                    2,
+                    9,
+                    1,
+                    7,
+                    6,
+                    8,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1
+                ],
+                "tools": 10
+            },
+            "localSearchReport": {
+                "reinsertion": 614,
+                "swap": 7430,
+                "twoOpt": 72
+            },
+            "result": {
+                "bestSolution": [
+                    8,
+                    6,
+                    7,
+                    1,
+                    9,
+                    2,
+                    3,
+                    4,
+                    5,
+                    0
+                ],
+                "minFx": 1402.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 1402.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-15_t_2.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 15,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-15_t_2.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 914894833,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 5134.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.877567432
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8
+                    ],
+                    [
+                        2,
+                        0,
+                        20,
+                        2,
+                        6,
+                        16,
+                        14,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20,
+                        20,
+                        14,
+                        16
+                    ],
+                    [
+                        10,
+                        20,
+                        0,
+                        4,
+                        6,
+                        14,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6,
+                        4,
+                        10,
+                        4,
+                        4
+                    ],
+                    [
+                        10,
+                        2,
+                        4,
+                        0,
+                        16,
+                        20,
+                        14,
+                        10,
+                        10,
+                        2,
+                        18,
+                        12,
+                        16,
+                        10,
+                        4
+                    ],
+                    [
+                        14,
+                        6,
+                        6,
+                        16,
+                        0,
+                        20,
+                        10,
+                        16,
+                        8,
+                        10,
+                        4,
+                        4,
+                        4,
+                        6,
+                        4
+                    ],
+                    [
+                        16,
+                        16,
+                        14,
+                        20,
+                        20,
+                        0,
+                        6,
+                        20,
+                        8,
+                        4,
+                        6,
+                        16,
+                        14,
+                        14,
+                        4
+                    ],
+                    [
+                        6,
+                        14,
+                        6,
+                        14,
+                        10,
+                        6,
+                        0,
+                        16,
+                        14,
+                        6,
+                        6,
+                        8,
+                        4,
+                        16,
+                        4
+                    ],
+                    [
+                        8,
+                        14,
+                        6,
+                        10,
+                        16,
+                        20,
+                        16,
+                        0,
+                        20,
+                        14,
+                        6,
+                        18,
+                        2,
+                        20,
+                        10
+                    ],
+                    [
+                        2,
+                        12,
+                        10,
+                        10,
+                        8,
+                        8,
+                        14,
+                        20,
+                        0,
+                        8,
+                        16,
+                        10,
+                        20,
+                        12,
+                        4
+                    ],
+                    [
+                        10,
+                        20,
+                        14,
+                        2,
+                        10,
+                        4,
+                        6,
+                        14,
+                        8,
+                        0,
+                        16,
+                        20,
+                        4,
+                        14,
+                        20
+                    ],
+                    [
+                        14,
+                        4,
+                        6,
+                        18,
+                        4,
+                        6,
+                        6,
+                        6,
+                        16,
+                        16,
+                        0,
+                        16,
+                        18,
+                        18,
+                        10
+                    ],
+                    [
+                        16,
+                        20,
+                        4,
+                        12,
+                        4,
+                        16,
+                        8,
+                        18,
+                        10,
+                        20,
+                        16,
+                        0,
+                        16,
+                        16,
+                        18
+                    ],
+                    [
+                        2,
+                        20,
+                        10,
+                        16,
+                        4,
+                        14,
+                        4,
+                        2,
+                        20,
+                        4,
+                        18,
+                        16,
+                        0,
+                        4,
+                        12
+                    ],
+                    [
+                        12,
+                        14,
+                        4,
+                        10,
+                        6,
+                        14,
+                        16,
+                        20,
+                        12,
+                        14,
+                        18,
+                        16,
+                        4,
+                        0,
+                        20
+                    ],
+                    [
+                        8,
+                        16,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        10,
+                        4,
+                        20,
+                        10,
+                        18,
+                        12,
+                        20,
+                        0
+                    ]
+                ],
+                "slots": 30,
+                "soaCost": 5134,
+                "soaSolution": [
+                    -1,
+                    -1,
+                    -1,
+                    4,
+                    0,
+                    3,
+                    5,
+                    6,
+                    7,
+                    13,
+                    8,
+                    10,
+                    11,
+                    12,
+                    1,
+                    9,
+                    14,
+                    2,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1
+                ],
+                "tools": 15
+            },
+            "localSearchReport": {
+                "reinsertion": 1391,
+                "swap": 17128,
+                "twoOpt": 305
+            },
+            "result": {
+                "bestSolution": [
+                    4,
+                    0,
+                    3,
+                    5,
+                    6,
+                    7,
+                    13,
+                    8,
+                    10,
+                    11,
+                    12,
+                    1,
+                    9,
+                    14,
+                    2
+                ],
+                "minFx": 5134.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 5134.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 5134.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-10_t_3.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 10,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-10_t_3.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 403727237,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 1378.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.134545585
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10
+                    ],
+                    [
+                        2,
+                        0,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8,
+                        20,
+                        2,
+                        6
+                    ],
+                    [
+                        10,
+                        14,
+                        0,
+                        16,
+                        14,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20
+                    ],
+                    [
+                        10,
+                        16,
+                        16,
+                        0,
+                        20,
+                        14,
+                        16,
+                        4,
+                        6,
+                        14
+                    ],
+                    [
+                        14,
+                        2,
+                        14,
+                        20,
+                        0,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6
+                    ],
+                    [
+                        16,
+                        12,
+                        14,
+                        14,
+                        6,
+                        0,
+                        4,
+                        10,
+                        4,
+                        4
+                    ],
+                    [
+                        6,
+                        8,
+                        12,
+                        16,
+                        6,
+                        4,
+                        0,
+                        16,
+                        20,
+                        14
+                    ],
+                    [
+                        8,
+                        20,
+                        20,
+                        4,
+                        10,
+                        10,
+                        16,
+                        0,
+                        10,
+                        10
+                    ],
+                    [
+                        2,
+                        2,
+                        4,
+                        6,
+                        14,
+                        4,
+                        20,
+                        10,
+                        0,
+                        2
+                    ],
+                    [
+                        10,
+                        6,
+                        20,
+                        14,
+                        6,
+                        4,
+                        14,
+                        10,
+                        2,
+                        0
+                    ]
+                ],
+                "slots": 15,
+                "soaCost": 1378,
+                "soaSolution": [
+                    8,
+                    6,
+                    7,
+                    1,
+                    9,
+                    2,
+                    3,
+                    5,
+                    0,
+                    4,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1
+                ],
+                "tools": 10
+            },
+            "localSearchReport": {
+                "reinsertion": 830,
+                "swap": 7294,
+                "twoOpt": 78
+            },
+            "result": {
+                "bestSolution": [
+                    4,
+                    0,
+                    5,
+                    3,
+                    2,
+                    9,
+                    1,
+                    7,
+                    6,
+                    8
+                ],
+                "minFx": 1378.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 1378.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 1378.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-10_t_2.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 10,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-10_t_2.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 375120625,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 1272.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.121142002
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10
+                    ],
+                    [
+                        2,
+                        0,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8,
+                        20,
+                        2,
+                        6
+                    ],
+                    [
+                        10,
+                        14,
+                        0,
+                        16,
+                        14,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20
+                    ],
+                    [
+                        10,
+                        16,
+                        16,
+                        0,
+                        20,
+                        14,
+                        16,
+                        4,
+                        6,
+                        14
+                    ],
+                    [
+                        14,
+                        2,
+                        14,
+                        20,
+                        0,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6
+                    ],
+                    [
+                        16,
+                        12,
+                        14,
+                        14,
+                        6,
+                        0,
+                        4,
+                        10,
+                        4,
+                        4
+                    ],
+                    [
+                        6,
+                        8,
+                        12,
+                        16,
+                        6,
+                        4,
+                        0,
+                        16,
+                        20,
+                        14
+                    ],
+                    [
+                        8,
+                        20,
+                        20,
+                        4,
+                        10,
+                        10,
+                        16,
+                        0,
+                        10,
+                        10
+                    ],
+                    [
+                        2,
+                        2,
+                        4,
+                        6,
+                        14,
+                        4,
+                        20,
+                        10,
+                        0,
+                        2
+                    ],
+                    [
+                        10,
+                        6,
+                        20,
+                        14,
+                        6,
+                        4,
+                        14,
+                        10,
+                        2,
+                        0
+                    ]
+                ],
+                "slots": 12,
+                "soaCost": 1272,
+                "soaSolution": [
+                    6,
+                    7,
+                    1,
+                    9,
+                    2,
+                    3,
+                    5,
+                    0,
+                    4,
+                    -1,
+                    -1,
+                    8
+                ],
+                "tools": 10
+            },
+            "localSearchReport": {
+                "reinsertion": 938,
+                "swap": 6210,
+                "twoOpt": 94
+            },
+            "result": {
+                "bestSolution": [
+                    8,
+                    6,
+                    7,
+                    1,
+                    9,
+                    2,
+                    3,
+                    5,
+                    0,
+                    4
+                ],
+                "minFx": 1272.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 1272.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 1272.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-10_t.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 10,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-10_t.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 580896334,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 1132.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.108305868
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10
+                    ],
+                    [
+                        2,
+                        0,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8,
+                        20,
+                        2,
+                        6
+                    ],
+                    [
+                        10,
+                        14,
+                        0,
+                        16,
+                        14,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20
+                    ],
+                    [
+                        10,
+                        16,
+                        16,
+                        0,
+                        20,
+                        14,
+                        16,
+                        4,
+                        6,
+                        14
+                    ],
+                    [
+                        14,
+                        2,
+                        14,
+                        20,
+                        0,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6
+                    ],
+                    [
+                        16,
+                        12,
+                        14,
+                        14,
+                        6,
+                        0,
+                        4,
+                        10,
+                        4,
+                        4
+                    ],
+                    [
+                        6,
+                        8,
+                        12,
+                        16,
+                        6,
+                        4,
+                        0,
+                        16,
+                        20,
+                        14
+                    ],
+                    [
+                        8,
+                        20,
+                        20,
+                        4,
+                        10,
+                        10,
+                        16,
+                        0,
+                        10,
+                        10
+                    ],
+                    [
+                        2,
+                        2,
+                        4,
+                        6,
+                        14,
+                        4,
+                        20,
+                        10,
+                        0,
+                        2
+                    ],
+                    [
+                        10,
+                        6,
+                        20,
+                        14,
+                        6,
+                        4,
+                        14,
+                        10,
+                        2,
+                        0
+                    ]
+                ],
+                "slots": 10,
+                "soaCost": 1132,
+                "soaSolution": [
+                    8,
+                    4,
+                    3,
+                    0,
+                    5,
+                    2,
+                    1,
+                    7,
+                    9,
+                    6
+                ],
+                "tools": 10
+            },
+            "localSearchReport": {
+                "reinsertion": 422,
+                "swap": 5771,
+                "twoOpt": 84
+            },
+            "result": {
+                "bestSolution": [
+                    1,
+                    2,
+                    5,
+                    0,
+                    3,
+                    4,
+                    8,
+                    6,
+                    9,
+                    7
+                ],
+                "minFx": 1132.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 1132.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 1132.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-9_t.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 9,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-9_t.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 56046474,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 866.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.08085479
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2
+                    ],
+                    [
+                        2,
+                        0,
+                        10,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8,
+                        20
+                    ],
+                    [
+                        10,
+                        10,
+                        0,
+                        2,
+                        6,
+                        16,
+                        14,
+                        14,
+                        12
+                    ],
+                    [
+                        10,
+                        14,
+                        2,
+                        0,
+                        20,
+                        4,
+                        20,
+                        20,
+                        14
+                    ],
+                    [
+                        14,
+                        16,
+                        6,
+                        20,
+                        0,
+                        16,
+                        4,
+                        6,
+                        14
+                    ],
+                    [
+                        16,
+                        2,
+                        16,
+                        4,
+                        16,
+                        0,
+                        6,
+                        6,
+                        10
+                    ],
+                    [
+                        6,
+                        12,
+                        14,
+                        20,
+                        4,
+                        6,
+                        0,
+                        14,
+                        6
+                    ],
+                    [
+                        8,
+                        8,
+                        14,
+                        20,
+                        6,
+                        6,
+                        14,
+                        0,
+                        4
+                    ],
+                    [
+                        2,
+                        20,
+                        12,
+                        14,
+                        14,
+                        10,
+                        6,
+                        4,
+                        0
+                    ]
+                ],
+                "slots": 10,
+                "soaCost": 866,
+                "soaSolution": [
+                    0,
+                    2,
+                    7,
+                    6,
+                    3,
+                    1,
+                    8,
+                    4,
+                    -1,
+                    5
+                ],
+                "tools": 9
+            },
+            "localSearchReport": {
+                "reinsertion": 786,
+                "swap": 4720,
+                "twoOpt": 97
+            },
+            "result": {
+                "bestSolution": [
+                    5,
+                    0,
+                    2,
+                    7,
+                    6,
+                    3,
+                    1,
+                    8,
+                    4
+                ],
+                "minFx": 866.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 866.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 866.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-20_t.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 20,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-20_t.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 151019328,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 12600.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 3.064439832
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8,
+                        20,
+                        2,
+                        6,
+                        16,
+                        14
+                    ],
+                    [
+                        2,
+                        0,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20,
+                        20,
+                        14,
+                        16,
+                        4,
+                        6,
+                        14,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6,
+                        4,
+                        10
+                    ],
+                    [
+                        10,
+                        14,
+                        0,
+                        4,
+                        4,
+                        16,
+                        20,
+                        14,
+                        10,
+                        10,
+                        2,
+                        18,
+                        12,
+                        16,
+                        10,
+                        4,
+                        20,
+                        10,
+                        16,
+                        8
+                    ],
+                    [
+                        10,
+                        12,
+                        4,
+                        0,
+                        10,
+                        4,
+                        4,
+                        4,
+                        6,
+                        4,
+                        6,
+                        20,
+                        8,
+                        4,
+                        6,
+                        16,
+                        14,
+                        14,
+                        4,
+                        16
+                    ],
+                    [
+                        14,
+                        20,
+                        4,
+                        10,
+                        0,
+                        14,
+                        6,
+                        6,
+                        8,
+                        4,
+                        16,
+                        4,
+                        20,
+                        14,
+                        6,
+                        18,
+                        2,
+                        20,
+                        10,
+                        8
+                    ],
+                    [
+                        16,
+                        4,
+                        16,
+                        4,
+                        14,
+                        0,
+                        16,
+                        10,
+                        20,
+                        12,
+                        4,
+                        16,
+                        20,
+                        4,
+                        14,
+                        20,
+                        16,
+                        18,
+                        18,
+                        10
+                    ],
+                    [
+                        6,
+                        20,
+                        20,
+                        4,
+                        6,
+                        16,
+                        0,
+                        16,
+                        16,
+                        18,
+                        4,
+                        12,
+                        20,
+                        20,
+                        12,
+                        2,
+                        6,
+                        14,
+                        18,
+                        2
+                    ],
+                    [
+                        8,
+                        20,
+                        14,
+                        4,
+                        6,
+                        10,
+                        16,
+                        0,
+                        20,
+                        2,
+                        14,
+                        8,
+                        6,
+                        16,
+                        12,
+                        12,
+                        18,
+                        2,
+                        14,
+                        16
+                    ],
+                    [
+                        2,
+                        14,
+                        10,
+                        6,
+                        8,
+                        20,
+                        16,
+                        20,
+                        0,
+                        12,
+                        6,
+                        10,
+                        14,
+                        18,
+                        16,
+                        16,
+                        12,
+                        20,
+                        6,
+                        16
+                    ],
+                    [
+                        10,
+                        16,
+                        10,
+                        4,
+                        4,
+                        12,
+                        18,
+                        2,
+                        12,
+                        0,
+                        10,
+                        16,
+                        12,
+                        12,
+                        10,
+                        4,
+                        18,
+                        6,
+                        2,
+                        8
+                    ],
+                    [
+                        14,
+                        4,
+                        2,
+                        6,
+                        16,
+                        4,
+                        4,
+                        14,
+                        6,
+                        10,
+                        0,
+                        18,
+                        12,
+                        20,
+                        8,
+                        20,
+                        10,
+                        18,
+                        14,
+                        8
+                    ],
+                    [
+                        16,
+                        6,
+                        18,
+                        20,
+                        4,
+                        16,
+                        12,
+                        8,
+                        10,
+                        16,
+                        18,
+                        0,
+                        8,
+                        10,
+                        6,
+                        18,
+                        16,
+                        2,
+                        14,
+                        8
+                    ],
+                    [
+                        2,
+                        14,
+                        12,
+                        8,
+                        20,
+                        20,
+                        20,
+                        6,
+                        14,
+                        12,
+                        12,
+                        8,
+                        0,
+                        18,
+                        10,
+                        20,
+                        14,
+                        10,
+                        14,
+                        18
+                    ],
+                    [
+                        12,
+                        6,
+                        16,
+                        4,
+                        14,
+                        4,
+                        20,
+                        16,
+                        18,
+                        12,
+                        20,
+                        10,
+                        18,
+                        0,
+                        6,
+                        4,
+                        12,
+                        20,
+                        10,
+                        8
+                    ],
+                    [
+                        8,
+                        6,
+                        10,
+                        6,
+                        6,
+                        14,
+                        12,
+                        12,
+                        16,
+                        10,
+                        8,
+                        6,
+                        10,
+                        6,
+                        0,
+                        16,
+                        4,
+                        14,
+                        14,
+                        16
+                    ],
+                    [
+                        20,
+                        10,
+                        4,
+                        16,
+                        18,
+                        20,
+                        2,
+                        12,
+                        16,
+                        4,
+                        20,
+                        18,
+                        20,
+                        4,
+                        16,
+                        0,
+                        18,
+                        4,
+                        6,
+                        2
+                    ],
+                    [
+                        2,
+                        14,
+                        20,
+                        14,
+                        2,
+                        16,
+                        6,
+                        18,
+                        12,
+                        18,
+                        10,
+                        16,
+                        14,
+                        12,
+                        4,
+                        18,
+                        0,
+                        4,
+                        20,
+                        14
+                    ],
+                    [
+                        6,
+                        6,
+                        10,
+                        14,
+                        20,
+                        18,
+                        14,
+                        2,
+                        20,
+                        6,
+                        18,
+                        2,
+                        10,
+                        20,
+                        14,
+                        4,
+                        4,
+                        0,
+                        2,
+                        14
+                    ],
+                    [
+                        16,
+                        4,
+                        16,
+                        4,
+                        10,
+                        18,
+                        18,
+                        14,
+                        6,
+                        2,
+                        14,
+                        14,
+                        14,
+                        10,
+                        14,
+                        6,
+                        20,
+                        2,
+                        0,
+                        18
+                    ],
+                    [
+                        14,
+                        10,
+                        8,
+                        16,
+                        8,
+                        10,
+                        2,
+                        16,
+                        16,
+                        8,
+                        8,
+                        8,
+                        18,
+                        8,
+                        16,
+                        2,
+                        14,
+                        14,
+                        18,
+                        0
+                    ]
+                ],
+                "slots": 30,
+                "soaCost": 12600,
+                "soaSolution": [
+                    -1,
+                    -1,
+                    3,
+                    11,
+                    0,
+                    10,
+                    15,
+                    4,
+                    17,
+                    14,
+                    5,
+                    19,
+                    18,
+                    12,
+                    8,
+                    13,
+                    7,
+                    6,
+                    2,
+                    16,
+                    1,
+                    9,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1
+                ],
+                "tools": 20
+            },
+            "localSearchReport": {
+                "reinsertion": 1679,
+                "swap": 30823,
+                "twoOpt": 130
+            },
+            "result": {
+                "bestSolution": [
+                    3,
+                    11,
+                    0,
+                    10,
+                    15,
+                    4,
+                    17,
+                    14,
+                    5,
+                    19,
+                    18,
+                    12,
+                    8,
+                    13,
+                    7,
+                    6,
+                    2,
+                    16,
+                    1,
+                    9
+                ],
+                "minFx": 12600.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 12600.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 12600.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-15_t.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 15,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-15_t.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 829771188,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 4818.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.745194903
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8
+                    ],
+                    [
+                        2,
+                        0,
+                        20,
+                        2,
+                        6,
+                        16,
+                        14,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20,
+                        20,
+                        14,
+                        16
+                    ],
+                    [
+                        10,
+                        20,
+                        0,
+                        4,
+                        6,
+                        14,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6,
+                        4,
+                        10,
+                        4,
+                        4
+                    ],
+                    [
+                        10,
+                        2,
+                        4,
+                        0,
+                        16,
+                        20,
+                        14,
+                        10,
+                        10,
+                        2,
+                        18,
+                        12,
+                        16,
+                        10,
+                        4
+                    ],
+                    [
+                        14,
+                        6,
+                        6,
+                        16,
+                        0,
+                        20,
+                        10,
+                        16,
+                        8,
+                        10,
+                        4,
+                        4,
+                        4,
+                        6,
+                        4
+                    ],
+                    [
+                        16,
+                        16,
+                        14,
+                        20,
+                        20,
+                        0,
+                        6,
+                        20,
+                        8,
+                        4,
+                        6,
+                        16,
+                        14,
+                        14,
+                        4
+                    ],
+                    [
+                        6,
+                        14,
+                        6,
+                        14,
+                        10,
+                        6,
+                        0,
+                        16,
+                        14,
+                        6,
+                        6,
+                        8,
+                        4,
+                        16,
+                        4
+                    ],
+                    [
+                        8,
+                        14,
+                        6,
+                        10,
+                        16,
+                        20,
+                        16,
+                        0,
+                        20,
+                        14,
+                        6,
+                        18,
+                        2,
+                        20,
+                        10
+                    ],
+                    [
+                        2,
+                        12,
+                        10,
+                        10,
+                        8,
+                        8,
+                        14,
+                        20,
+                        0,
+                        8,
+                        16,
+                        10,
+                        20,
+                        12,
+                        4
+                    ],
+                    [
+                        10,
+                        20,
+                        14,
+                        2,
+                        10,
+                        4,
+                        6,
+                        14,
+                        8,
+                        0,
+                        16,
+                        20,
+                        4,
+                        14,
+                        20
+                    ],
+                    [
+                        14,
+                        4,
+                        6,
+                        18,
+                        4,
+                        6,
+                        6,
+                        6,
+                        16,
+                        16,
+                        0,
+                        16,
+                        18,
+                        18,
+                        10
+                    ],
+                    [
+                        16,
+                        20,
+                        4,
+                        12,
+                        4,
+                        16,
+                        8,
+                        18,
+                        10,
+                        20,
+                        16,
+                        0,
+                        16,
+                        16,
+                        18
+                    ],
+                    [
+                        2,
+                        20,
+                        10,
+                        16,
+                        4,
+                        14,
+                        4,
+                        2,
+                        20,
+                        4,
+                        18,
+                        16,
+                        0,
+                        4,
+                        12
+                    ],
+                    [
+                        12,
+                        14,
+                        4,
+                        10,
+                        6,
+                        14,
+                        16,
+                        20,
+                        12,
+                        14,
+                        18,
+                        16,
+                        4,
+                        0,
+                        20
+                    ],
+                    [
+                        8,
+                        16,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        10,
+                        4,
+                        20,
+                        10,
+                        18,
+                        12,
+                        20,
+                        0
+                    ]
+                ],
+                "slots": 20,
+                "soaCost": 4818,
+                "soaSolution": [
+                    5,
+                    3,
+                    6,
+                    7,
+                    13,
+                    8,
+                    10,
+                    11,
+                    12,
+                    1,
+                    14,
+                    9,
+                    2,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    0,
+                    4
+                ],
+                "tools": 15
+            },
+            "localSearchReport": {
+                "reinsertion": 1174,
+                "swap": 15345,
+                "twoOpt": 150
+            },
+            "result": {
+                "bestSolution": [
+                    2,
+                    9,
+                    14,
+                    1,
+                    12,
+                    11,
+                    10,
+                    8,
+                    13,
+                    7,
+                    6,
+                    3,
+                    5,
+                    4,
+                    0
+                ],
+                "minFx": 4818.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 4818.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 4818.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-8_t.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 8,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-8_t.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 105681345,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 724.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.054393269
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8
+                    ],
+                    [
+                        2,
+                        0,
+                        2,
+                        10,
+                        14,
+                        16,
+                        2,
+                        12
+                    ],
+                    [
+                        10,
+                        2,
+                        0,
+                        8,
+                        20,
+                        2,
+                        6,
+                        16
+                    ],
+                    [
+                        10,
+                        10,
+                        8,
+                        0,
+                        14,
+                        14,
+                        12,
+                        20
+                    ],
+                    [
+                        14,
+                        14,
+                        20,
+                        14,
+                        0,
+                        4,
+                        20,
+                        20
+                    ],
+                    [
+                        16,
+                        16,
+                        2,
+                        14,
+                        4,
+                        0,
+                        14,
+                        16
+                    ],
+                    [
+                        6,
+                        2,
+                        6,
+                        12,
+                        20,
+                        14,
+                        0,
+                        4
+                    ],
+                    [
+                        8,
+                        12,
+                        16,
+                        20,
+                        20,
+                        16,
+                        4,
+                        0
+                    ]
+                ],
+                "slots": 10,
+                "soaCost": 724,
+                "soaSolution": [
+                    1,
+                    5,
+                    -1,
+                    -1,
+                    0,
+                    6,
+                    2,
+                    4,
+                    3,
+                    7
+                ],
+                "tools": 8
+            },
+            "localSearchReport": {
+                "reinsertion": 615,
+                "swap": 4136,
+                "twoOpt": 77
+            },
+            "result": {
+                "bestSolution": [
+                    5,
+                    1,
+                    7,
+                    3,
+                    4,
+                    2,
+                    6,
+                    0
+                ],
+                "minFx": 724.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 724.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 724.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ],
+    "o-10_t_4.txt": [
+        {
+            "brkgaParameters": {
+                "chromosomeSize": 10,
+                "currentGeneration": 100,
+                "eliteFraction": 0.15,
+                "exchangeInterval": 1,
+                "filepath": "/home/pedro/tip/instances/o/o-10_t_4.txt",
+                "gensWithoutImprovement": 100,
+                "inheritanceProbability": 0.5,
+                "irace": false,
+                "lastPm": 200,
+                "lsCoveragePercentage": 0.75,
+                "lsEliteApplicationPercentage": 0.5,
+                "lsNonEliteApplicationPercentage": 0.05,
+                "maxGensWithoutImprovement": 100,
+                "maxIterations": 1000,
+                "maximumGenerations": 700,
+                "mutationFraction": 0.1,
+                "numberOfExchanges": 0,
+                "numberOfPopulations": 1,
+                "numberOfThreads": 6,
+                "pmIncreaseFactor": 0.10000000149011612,
+                "populationSize": 400,
+                "randomNumberGeneratorSeed": 943513089,
+                "timeLimit": 120,
+                "useVND": true
+            },
+            "convergenceReport": [
+                {
+                    "bestFitness": 1402.0,
+                    "generation": 0
+                }
+            ],
+            "executionTimeReport": {
+                "durationSeconds": 0.123152771
+            },
+            "instance": {
+                "instance": [
+                    [
+                        0,
+                        2,
+                        10,
+                        10,
+                        14,
+                        16,
+                        6,
+                        8,
+                        2,
+                        10
+                    ],
+                    [
+                        2,
+                        0,
+                        14,
+                        16,
+                        2,
+                        12,
+                        8,
+                        20,
+                        2,
+                        6
+                    ],
+                    [
+                        10,
+                        14,
+                        0,
+                        16,
+                        14,
+                        14,
+                        12,
+                        20,
+                        4,
+                        20
+                    ],
+                    [
+                        10,
+                        16,
+                        16,
+                        0,
+                        20,
+                        14,
+                        16,
+                        4,
+                        6,
+                        14
+                    ],
+                    [
+                        14,
+                        2,
+                        14,
+                        20,
+                        0,
+                        6,
+                        6,
+                        10,
+                        14,
+                        6
+                    ],
+                    [
+                        16,
+                        12,
+                        14,
+                        14,
+                        6,
+                        0,
+                        4,
+                        10,
+                        4,
+                        4
+                    ],
+                    [
+                        6,
+                        8,
+                        12,
+                        16,
+                        6,
+                        4,
+                        0,
+                        16,
+                        20,
+                        14
+                    ],
+                    [
+                        8,
+                        20,
+                        20,
+                        4,
+                        10,
+                        10,
+                        16,
+                        0,
+                        10,
+                        10
+                    ],
+                    [
+                        2,
+                        2,
+                        4,
+                        6,
+                        14,
+                        4,
+                        20,
+                        10,
+                        0,
+                        2
+                    ],
+                    [
+                        10,
+                        6,
+                        20,
+                        14,
+                        6,
+                        4,
+                        14,
+                        10,
+                        2,
+                        0
+                    ]
+                ],
+                "slots": 20,
+                "soaCost": 1402,
+                "soaSolution": [
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    0,
+                    5,
+                    4,
+                    3,
+                    2,
+                    9,
+                    1,
+                    7,
+                    6,
+                    8,
+                    -1,
+                    -1,
+                    -1,
+                    -1
+                ],
+                "tools": 10
+            },
+            "localSearchReport": {
+                "reinsertion": 713,
+                "swap": 7499,
+                "twoOpt": 88
+            },
+            "result": {
+                "bestSolution": [
+                    8,
+                    6,
+                    7,
+                    1,
+                    9,
+                    2,
+                    3,
+                    4,
+                    5,
+                    0
+                ],
+                "minFx": 1402.0
+            },
+            "topIndividuals": {
+                "population": [
+                    {
+                        "fitness": 1402.0,
+                        "rank": 0
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 1
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 2
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 3
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 4
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 5
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 6
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 7
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 8
+                    },
+                    {
+                        "fitness": 1402.0,
+                        "rank": 9
+                    }
+                ]
+            }
+        }
+    ]
+}
