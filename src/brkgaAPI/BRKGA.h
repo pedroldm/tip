@@ -475,9 +475,50 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
         ++i;
     }
 
+    
+
     if (useVND) {
         std::shuffle(this->searchPairs.begin(), this->searchPairs.end(), this->rng_engine);
         std::shuffle(this->reverseSearchPairs.begin(), this->reverseSearchPairs.end(), this->rng_engine);
+
+        #ifdef _OPENMP
+        #pragma omp parallel for num_threads(MAX_THREADS)
+        #endif
+        for(int k = 0 ; k < p ; k++) {
+            if(k < pe) {
+                if (!next.population[k].refined &&
+                    refRNG.rand() < this->lsEliteApplicationPercentage) {
+                    Chromosome refinedChromosome;
+                    std::vector<int> improvements;
+                    std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, reverseSearchPairs, pairsToConsider);
+                    next.population[k] = refinedChromosome;
+                    next.population[k].refined = true;
+                    #pragma omp atomic
+                    this->lsImprovements[0] += improvements[0];
+                    #pragma omp atomic
+                    this->lsImprovements[1] += improvements[1];
+                    #pragma omp atomic
+                    this->lsImprovements[2] += improvements[2];
+                }
+            } else {
+                if (!next.population[k].refined &&
+                    refRNG.rand() < this->lsNonEliteApplicationPercentage) {
+                    Chromosome refinedChromosome;
+                    std::vector<int> improvements;
+                    std::tie(refinedChromosome, improvements) = this->vnd.VNDSearch(next.population[k], searchPairs, reverseSearchPairs, pairsToConsider);
+                    next.population[k] = refinedChromosome;
+                    next.population[k].refined = true;
+                    #pragma omp atomic
+                    this->lsImprovements[0] += improvements[0];
+                    #pragma omp atomic
+                    this->lsImprovements[1] += improvements[1];
+                    #pragma omp atomic
+                    this->lsImprovements[2] += improvements[2];
+                }
+            }
+        }
+
+        /*
         #ifdef _OPENMP
         #pragma omp parallel for num_threads(MAX_THREADS)
         #endif
@@ -511,6 +552,7 @@ inline void BRKGA<Decoder, RNG>::evolution(Population& curr, Population& next,
                 this->lsImprovements[2] += improvements[2];
             }
         }
+        */
     }
 
 
