@@ -96,44 +96,25 @@ double SampleDecoder::fitness(const std::vector<int> solution) const {
 
 Chromosome SampleDecoder::encode(const std::vector<int>& solution, Chromosome& originalChromosome) const {
     std::sort(originalChromosome.chromosome.begin(), originalChromosome.chromosome.end());
-    std::unordered_map<int, int> toolMap;
+
     Chromosome newChromosome(std::vector<double>(this->tools));
-
-    for(int i = 0 ; i < this->tools; i++) {
-        toolMap[solution[i]] = i;
+    for(size_t i = 0; i < this->tools; i++) {
+        newChromosome.chromosome[solution[i]] = originalChromosome.chromosome[i];
     }
-
-    for (const auto& [key, value] : toolMap) {
-        newChromosome.chromosome[value] = originalChromosome.chromosome[key];
-    }
-
-    //short j = this->tools;
-    //for(int i = 0; i < this->slots; i++) {
-    //    if(newChromosome.chromosome[i] == -1) {
-    //        newChromosome.chromosome[i] = originalChromosome.chromosome[j++];
-    //    }
-    //}
 
     return newChromosome;
 }
 
 double SampleDecoder::decode(const Chromosome& chromosome) const {
-    std::unordered_map<double, std::vector<int>> valueToIndicesMap;
-    Chromosome sortedChromosome(chromosome.chromosome);
-    
-    std::sort(sortedChromosome.chromosome.begin(), sortedChromosome.chromosome.end());
-    
-    std::vector<int> decodedSolution(this->tools, -1);
-
-    for (size_t i = 0; i < chromosome.chromosome.size(); ++i) {
-        valueToIndicesMap[chromosome.chromosome[i]].push_back(i);
+    std::vector<std::tuple<double, int>> chromosomeIndex(this->tools);
+    for (int i = 0; i < this->tools; ++i) {
+        chromosomeIndex[i] = std::make_tuple(chromosome.chromosome[i], i);
     }
+    std::sort(chromosomeIndex.begin(), chromosomeIndex.end());
 
-    for (size_t i = 0; i < this->tools; ++i) {
-        double value = sortedChromosome.chromosome[i];
-        int index = valueToIndicesMap[value].back();
-        valueToIndicesMap[value].pop_back();
-        decodedSolution[index] = i;
+    std::vector<int> decodedSolution(this->tools);
+    for (int i = 0; i < this->tools; ++i) {
+        decodedSolution[i] = std::get<1>(chromosomeIndex[i]);
     }
 
     return this->fitness(decodedSolution);
