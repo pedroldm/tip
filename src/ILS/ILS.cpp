@@ -66,8 +66,8 @@ void ILS::run() {
             }
         }
 
-        std::cout << "Iteração [" << currIteration
-                  << "] : " << std::get<0>(neighborhood[0]) << std::endl;
+        //std::cout << "Iteração [" << currIteration
+        //          << "] : " << std::get<0>(neighborhood[0]) << std::endl;
 
         if (currentBest < instance.evaluate(bestSolution)) {
             std::cout << "Novo melhor [" << currIteration

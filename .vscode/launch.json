@@ -6,7 +6,31 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/main_debug",
-            "args": ["--filepath=${input:filePath}"],
+            "args": ["--filepath=${input:filePath}", "--PM_INCREASE_FACTOR=0.15", "--lsEliteApplicationPercentage=0.06", "--useVND=true"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "ILS Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/ILS/main_debug",
+            "args": ["--filePath=${input:filePath}", "--maxIterations=1000", "--maxTime=120", "--maxIterationsWithoutImprovement=100", "--alpha=0.020,", "--maxThreads=10"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
